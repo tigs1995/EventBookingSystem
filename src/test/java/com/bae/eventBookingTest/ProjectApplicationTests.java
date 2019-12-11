@@ -1,4 +1,4 @@
-package com.example.intro;
+package com.bae.eventBookingTest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
