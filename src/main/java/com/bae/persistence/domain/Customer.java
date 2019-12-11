@@ -21,11 +21,11 @@ public class Customer {
 	public Customer() {
 	}
 
-	public Customer(String firstName, String lastName, String custoemrEmail, String customerNumber) {
+	public Customer(String firstName, String lastName, String customerEmail, String customerNumber) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.customerEmail = custoemrEmail;
+		this.customerEmail = customerEmail;
 		this.customerNumber = customerNumber;
 	}
 
