@@ -1,13 +1,16 @@
 package com.bae.persistence.domain;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Customer {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long customerId;
@@ -16,8 +19,10 @@ public class Customer {
 	private String customerEmail;
 	private String customerNumber;
 	private Long eventId;
-	
-	
+
+	@OneToMany(mappedBy = "customer")
+	private Set<Event> events;
+
 	public Customer() {
 	}
 
@@ -125,13 +130,5 @@ public class Customer {
 				+ ", customerEmail=" + customerEmail + ", customerNumber=" + customerNumber + ", eventId=" + eventId
 				+ "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
