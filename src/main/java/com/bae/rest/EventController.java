@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ import com.bae.persistence.domain.Event;
 @RequestMapping("/app")
 public class EventController {
 	
-	private EventService service;
+	private EventService service; 
 
 	public EventController(EventService service){  
 		this.service = service;
@@ -28,8 +29,9 @@ public class EventController {
 	}
 
 	@PostMapping("/event/{custid}")
-	public Event addNewEvent(Event eventToAdd){
-		return service.addNewEvent(eventToAdd);
+	public Event addNewEvent(Event eventToAdd, @PathVariable("custid") Long custid){
+		
+		return service.addNewEvent(eventToAdd, custid);
 	}
 
 	@DeleteMapping("/event/{id}")

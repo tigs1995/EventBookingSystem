@@ -36,6 +36,14 @@ public class Event {
 	@JoinColumn(name = "customerId")
 	private Customer customer;
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	public Event() {
 	}
 
@@ -47,11 +55,11 @@ public class Event {
 		this.eventId = eventId;
 	}
 
-	public String getEventPostCode() {
+	public String getEventPostcode() {
 		return eventPostcode;
 	}
 
-	public void setEventPostCode(String eventPostcode) {
+	public void setEventPostcode(String eventPostcode) {
 		this.eventPostcode = eventPostcode;
 	}
 

@@ -18,7 +18,6 @@ public class Customer {
 	private String lastName;
 	private String customerEmail;
 	private String customerNumber;
-	private Long eventId;
 
 	@OneToMany(mappedBy = "customer")
 	private Set<Event> events;
@@ -74,13 +73,6 @@ public class Customer {
 		this.customerNumber = customerNumber;
 	}
 
-	public Long getEventId() {
-		return eventId;
-	}
-
-	public void setEventId(Long eventId) {
-		this.eventId = eventId;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -106,11 +98,6 @@ public class Customer {
 				return false;
 		} else if (!customerNumber.equals(other.customerNumber))
 			return false;
-		if (eventId == null) {
-			if (other.eventId != null)
-				return false;
-		} else if (!eventId.equals(other.eventId))
-			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -127,7 +114,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", customerEmail=" + customerEmail + ", customerNumber=" + customerNumber + ", eventId=" + eventId
+				+ ", customerEmail=" + customerEmail + ", customerNumber=" + customerNumber + ", eventId="
 				+ "]";
 	}
 
