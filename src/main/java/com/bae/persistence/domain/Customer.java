@@ -23,6 +23,7 @@ public class Customer {
 	private Set<Event> events;
 
 	public Customer() {
+		
 	}
 
 	public Customer(String firstName, String lastName, String customerEmail, String customerNumber) {

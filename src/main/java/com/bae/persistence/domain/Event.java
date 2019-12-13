@@ -25,7 +25,7 @@ public class Event {
 	private String eventPostcode;
 
 	@Column(name = "eventCapacity")
-	private String eventCapacity;
+	private int eventCapacity;
 
 	@Column(name = "eventDate")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
@@ -41,6 +41,14 @@ public class Event {
 	}
 
 	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Event(String eventPostcode, int eventCapacity, Date eventDate, Customer customer) {
+		super();
+		this.eventPostcode = eventPostcode;
+		this.eventCapacity = eventCapacity;
+		this.eventDate = eventDate;
 		this.customer = customer;
 	}
 
@@ -63,11 +71,11 @@ public class Event {
 		this.eventPostcode = eventPostcode;
 	}
 
-	public String getEventCapacity() {
+	public int getEventCapacity() {
 		return eventCapacity;
 	}
 
-	public void setEventCapacity(String eventCapacity) {
+	public void setEventCapacity(int eventCapacity) {
 		this.eventCapacity = eventCapacity;
 	}
 
@@ -88,10 +96,12 @@ public class Event {
 		if (getClass() != obj.getClass())
 			return false;
 		Event other = (Event) obj;
-		if (eventCapacity == null) {
-			if (other.eventCapacity != null)
+		if (customer == null) {
+			if (other.customer != null)
 				return false;
-		} else if (!eventCapacity.equals(other.eventCapacity))
+		} else if (!customer.equals(other.customer))
+			return false;
+		if (eventCapacity != other.eventCapacity)
 			return false;
 		if (eventDate == null) {
 			if (other.eventDate != null)
