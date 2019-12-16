@@ -15,6 +15,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Event {
+	
+	
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,8 +54,17 @@ public class Event {
 		this.eventDate = eventDate;
 		this.customer = customer;
 	}
-
+	
+	
 	public Event() {
+
+	}
+	
+	//for Event Service test purposes 
+	public Event(String eventPostcode, int eventCapacity, Date eventDate) {
+		this.eventPostcode = eventPostcode;
+		this.eventCapacity = eventCapacity;
+		this.eventDate = eventDate;
 	}
 
 	public Long getEventId() {

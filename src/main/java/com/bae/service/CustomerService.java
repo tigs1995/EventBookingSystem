@@ -25,7 +25,7 @@ public class CustomerService {
 	}
 	
 	public String deleteCustomer(Long primaryKeyOfCustomer){
-		repo.deleteById(primaryKeyOfCustomer);
+		this.repo.deleteById(primaryKeyOfCustomer);
 		return "Customer deleted successfully.";
 	}
 

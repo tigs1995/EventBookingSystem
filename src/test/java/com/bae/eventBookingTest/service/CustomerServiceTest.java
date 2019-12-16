@@ -28,12 +28,10 @@ public class CustomerServiceTest {
 	private CustomerRepository custRepo;
 		
 	Customer dummyCustomer = new Customer("James", "Kiesslinger", "jk@hotmail.com", "07968594856");
-	Customer dummyCustomerWithID = new Customer("James", "Kiesslinger", "jk@hotmail.com", "07968594856");
 
 	@Before
 	public void init() {
 		this.custRepo.deleteAll();
-		this.dummyCustomerWithID = this.custRepo.save(this.dummyCustomer);
 	}
 	
 	@Test
@@ -47,14 +45,13 @@ public class CustomerServiceTest {
 
 	@Test
 	public void addCustomerTest() {
-		Mockito.when(custRepo.save(this.dummyCustomer)).thenReturn(this.dummyCustomerWithID);
-		assertEquals(this.dummyCustomerWithID, this.custService.addNewCustomer(this.dummyCustomer));
+		Mockito.when(this.custRepo.save(dummyCustomer)).thenReturn(dummyCustomer);
+		assertEquals(this.dummyCustomer, this.custService.addNewCustomer(this.dummyCustomer));
 	}
 	
 	@Test
 	public void deleteCustomerTest() {
-		this.dummyCustomerWithID.getCustomerId();
-		assertEquals(this.custService.deleteCustomer(this.dummyCustomerWithID.getCustomerId()), "Customer deleted successfully.");
+		assertEquals("Customer deleted successfully.", this.custService.deleteCustomer(0l));
 	}
 	
 	

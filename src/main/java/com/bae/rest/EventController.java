@@ -34,9 +34,9 @@ public class EventController {
 		return service.addNewEvent(eventToAdd, custid);
 	}
 
-	@DeleteMapping("/event/{id}")
-	public String deleteEvent(Long primaryKeyOfEvent){
-		return service.deleteEvent(primaryKeyOfEvent);
+	@DeleteMapping("/event/{eventid}")
+	public String deleteEvent(@PathVariable("eventid") Long eventId){
+		return service.deleteEvent(eventId);
 	}
 
 

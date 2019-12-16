@@ -1,4 +1,4 @@
-package com.bae.eventBookingTest.repository;
+package com.bae.eventBookingTest.persistence.repository;
 
 import static org.junit.Assert.*;
 
