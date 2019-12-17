@@ -43,7 +43,7 @@ public class EventRepositoryTest {
 		}
 		testEvent.setEventDate(d);
 		testEvent.setEventCapacity(250);
-		testEvent.setEventPostcode("HP279NQ");
+		testEvent.setEventPostcode("HP265UQ");
 		assertEquals(this.repo.findAll().get(0), testEvent);
 	}
 

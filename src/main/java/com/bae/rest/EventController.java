@@ -4,17 +4,21 @@ import com.bae.service.EventService;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bae.persistence.domain.Event;
 
 @RestController
 @RequestMapping("/app")
+@CrossOrigin
 public class EventController {
 	
 	private EventService service; 
@@ -29,8 +33,7 @@ public class EventController {
 	}
 
 	@PostMapping("/event/{custid}")
-	public Event addNewEvent(Event eventToAdd, @PathVariable("custid") Long custid){
-		
+	public Event addNewEvent(@RequestBody Event eventToAdd, @PathVariable("custid") Long custid){
 		return service.addNewEvent(eventToAdd, custid);
 	}
 

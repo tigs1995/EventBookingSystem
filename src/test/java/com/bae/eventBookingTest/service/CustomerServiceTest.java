@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.when;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bae.persistence.domain.Customer;
@@ -38,14 +38,14 @@ public class CustomerServiceTest {
 	public void getAllCustomersTest() {
 		List<Customer> customerList = new ArrayList<>();
 		customerList.add(this.dummyCustomer);
-		Mockito.when(custRepo.findAll()).thenReturn(customerList);
+		when(custRepo.findAll()).thenReturn(customerList);
 		System.out.println(customerList.get(0));
 		assertTrue("Returned no users!!", this.custService.getAllCustomers().size() > 0);
 	}
 
 	@Test
 	public void addCustomerTest() {
-		Mockito.when(this.custRepo.save(dummyCustomer)).thenReturn(dummyCustomer);
+		when(this.custRepo.save(dummyCustomer)).thenReturn(dummyCustomer);
 		assertEquals(this.dummyCustomer, this.custService.addNewCustomer(this.dummyCustomer));
 	}
 	

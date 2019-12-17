@@ -20,8 +20,8 @@ public class EventTest {
 
 	@Test
 	public void testSetGetPostcode() {
-		testEvent.setEventPostcode("HP279NQ");
-		assertEquals(this.testEvent.getEventPostcode(), "HP279NQ");
+		testEvent.setEventPostcode("HP456WZ");
+		assertEquals(this.testEvent.getEventPostcode(), "HP456WZ");
 	}
 
 	@Test
@@ -43,5 +43,4 @@ public class EventTest {
 		testEvent.setEventDate(d);
 		assertEquals(sdf.format(this.testEvent.getEventDate()).toString(), "12-02-2019");
 	}
-
 }
