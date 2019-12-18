@@ -3,11 +3,8 @@ package com.bae.eventBookingTest.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,39 +24,32 @@ import com.bae.service.EventService;
 
 @RunWith(SpringRunner.class)
 public class EventServiceTest {
-	
-	public Date getDate() {
-		String dateString = "12-02-2019";
 
-		Date date = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			date = sdf.parse(dateString);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
-	}
-
-	
 	@InjectMocks
 	private EventService eventService;
 
 	@Mock
 	private EventRepository eventRepo;
-	
-	@Mock 
+
+	@Mock
 	private CustomerRepository custRepo;
-		  
-	Event dummyEvent = new Event("HP279NQ", 250, getDate());
+	
+	private Event dummyEvent;
+	
+	private Event dummyEventWithID;
+	
+	final Long eventId = 1L;
+
 	Customer dummyCustomer = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "01928374859");
 
 	@Before
 	public void init() {
 		this.eventRepo.deleteAll();
-		
+		this.dummyEvent = new Event("HP549JW", 250, LocalDate.of(2019, 12, 02));
+		this.dummyEventWithID = new Event(dummyEvent.getEventPostcode(), dummyEvent.getEventCapacity(), dummyEvent.getEventDate());
+		this.dummyEventWithID.setEventId(eventId);
 	}
-	
+
 	@Test
 	public void getAllEventsTest() {
 		List<Event> eventList = new ArrayList<>();
@@ -75,12 +65,21 @@ public class EventServiceTest {
 		when(this.eventRepo.save(dummyEvent)).thenReturn(dummyEvent);
 		assertEquals(this.dummyEvent, this.eventService.addNewEvent(this.dummyEvent, 1L));
 	}
-	
+
 	@Test
 	public void deleteEventTest() {
 		assertEquals("Event deleted successfully.", this.eventService.deleteEvent(0l));
 	}
 	
-	
+	@Test
+	public void updateEventTest() {
+		Event newEventDetails = new Event("HP549JW", 250, LocalDate.of(2019, 12, 02));
+		Event updatedEvent = new Event(newEventDetails.getEventPostcode(), newEventDetails.getEventCapacity(), newEventDetails.getEventDate());
+		updatedEvent.setEventId(this.eventId);
+		
+		when(this.eventRepo.findById(this.eventId)).thenReturn(Optional.of(this.dummyEventWithID));
+		when(this.eventRepo.save(updatedEvent)).thenReturn(updatedEvent);
+		assertEquals(updatedEvent, this.eventService.updateEvent(newEventDetails, this.eventId));
+	}
 
 }

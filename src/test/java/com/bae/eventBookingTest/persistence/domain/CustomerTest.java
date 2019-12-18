@@ -2,11 +2,15 @@ package com.bae.eventBookingTest.persistence.domain;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Customer;
+import com.bae.persistence.domain.Event;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -17,25 +21,44 @@ public class CustomerTest {
 	@Test
 	public void testSetGetFirstName() {
 		testCustomer.setFirstName("Tigs");
-		assertEquals(this.testCustomer.getFirstName(), "Tigs");
+		assertEquals("Tigs", this.testCustomer.getFirstName());
 	}
 
 	@Test
 	public void testSetGetLastName() {
 		testCustomer.setLastName("Knowles");
-		assertEquals(this.testCustomer.getLastName(), "Knowles");
+		assertEquals("Knowles", this.testCustomer.getLastName());
 	}
 
 	@Test
 	public void testSetGetEmail() {
-		testCustomer.setCustomerEmail("tigsye@hotmail.com");
-		assertEquals(this.testCustomer.getCustomerEmail(), "tigs@hotmail.com");
+		testCustomer.setCustomerEmail("tigs@hotmail.com");
+		assertEquals("tigs@hotmail.com", this.testCustomer.getCustomerEmail());
 	}
 
 	@Test
 	public void testSetGetNumber() {
 		testCustomer.setCustomerNumber("07493849586");
-		assertEquals(this.testCustomer.getCustomerNumber(), "07493849586");
+		assertEquals("07493849586", this.testCustomer.getCustomerNumber());	}
+	
+	@Test public void equalsFalseTest2() {
+	    Customer customer1 = new Customer("Tigs", "Knowles", "tigs@msn.com", "07384958675");
+	    Customer customer2 = new Customer("George", "Knowles", "tigs@msn.com", "07857463748");
+	    Assert.assertNotEquals(customer1, customer2);
+	}
+
+	@Test public void equalsTrueTest() {
+		Customer customer1 = new Customer("Tigs", "Knowles", "tigs@msn.com", "07384958675");
+	    Customer customer2 = new Customer("Tigs", "Knowles", "tigs@msn.com", "07384958675");
+	    Assert.assertEquals(customer1, customer2);
+	}
+	
+	@Test
+	public void testHashcode() {
+		Customer x = new Customer("Tigs", "Knowles", "tigs@msn.com", "07384958675");  
+		Customer y = new Customer("Tigs", "Knowles", "tigs@msn.com", "07384958675");
+	    Assert.assertTrue(x.equals(y) && y.equals(x));
+	    Assert.assertTrue(x.hashCode() == y.hashCode());
 	}
 
 }

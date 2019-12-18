@@ -2,6 +2,8 @@ package com.bae.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.domain.Customer;
@@ -10,23 +12,37 @@ import com.bae.persistence.repository.CustomerRepository;
 @Service
 public class CustomerService {
 	
-	private CustomerRepository repo;
+	private CustomerRepository customerRepo;
 
-	public CustomerService(CustomerRepository repo) {
-		this.repo = repo;
+	public CustomerService(CustomerRepository customerRepo) {
+		this.customerRepo = customerRepo;
 	}
 	
 	public List<Customer> getAllCustomers(){
-		return repo.findAll();
+		return customerRepo.findAll();
 	}
 	
 	public Customer addNewCustomer(Customer customerToAdd){
-		return repo.save(customerToAdd);
+		return customerRepo.save(customerToAdd);
 	}
 	
 	public String deleteCustomer(Long primaryKeyOfCustomer){
-		this.repo.deleteById(primaryKeyOfCustomer);
+		this.customerRepo.deleteById(primaryKeyOfCustomer);
 		return "Customer deleted successfully.";
+	}
+	
+	public Customer findCustomerByID(Long customerId) {
+		return this.customerRepo.findById(customerId).orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist"));
+	}
+	
+	public Customer updateCustomer(Customer customer, Long customerId) {
+		Customer updatedCustomer = findCustomerByID(customerId);
+		updatedCustomer.setCustomerEmail(customer.getCustomerEmail());
+		updatedCustomer.setCustomerNumber(customer.getCustomerNumber());
+		updatedCustomer.setFirstName(customer.getFirstName());
+		updatedCustomer.setLastName(customer.getLastName());
+		return this.customerRepo.save(updatedCustomer);
+		
 	}
 
 	

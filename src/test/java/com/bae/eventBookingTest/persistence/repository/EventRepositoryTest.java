@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.junit.Before;
@@ -33,15 +34,7 @@ public class EventRepositoryTest {
 
 	@Test
 	public void testEventRepoFindAll() {
-		String date = "12-02-2019";
-		Date d = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			d = sdf.parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		testEvent.setEventDate(d);
+		testEvent.setEventDate(LocalDate.of(2019, 12, 02));
 		testEvent.setEventCapacity(250);
 		testEvent.setEventPostcode("HP265UQ");
 		assertEquals(this.repo.findAll().get(0), testEvent);

@@ -1,7 +1,6 @@
 package com.bae.persistence.domain;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Event {
@@ -29,9 +24,7 @@ public class Event {
 	private int eventCapacity;
 
 	@Column(name = "eventDate")
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	@Temporal(TemporalType.DATE)
-	private Date eventDate;
+	private LocalDate eventDate;
 
 	@ManyToOne
 	@JoinColumn(name = "customerId")
@@ -45,7 +38,7 @@ public class Event {
 		this.customer = customer;
 	}
 
-	public Event(String eventPostcode, int eventCapacity, Date eventDate, Customer customer) {
+	public Event(String eventPostcode, int eventCapacity, LocalDate eventDate, Customer customer) {
 		super();
 		this.eventPostcode = eventPostcode;
 		this.eventCapacity = eventCapacity;
@@ -59,7 +52,7 @@ public class Event {
 	}
 	
 	//for Event Service test purposes 
-	public Event(String eventPostcode, int eventCapacity, Date eventDate) {
+	public Event(String eventPostcode, int eventCapacity, LocalDate eventDate) {
 		this.eventPostcode = eventPostcode;
 		this.eventCapacity = eventCapacity;
 		this.eventDate = eventDate;
@@ -89,12 +82,24 @@ public class Event {
 		this.eventCapacity = eventCapacity;
 	}
 
-	public Date getEventDate() {
+	public LocalDate getEventDate() {
 		return eventDate;
 	}
 
-	public void setEventDate(Date eventDate) {
+	public void setEventDate(LocalDate eventDate) {
 		this.eventDate = eventDate;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+		result = prime * result + eventCapacity;
+		result = prime * result + ((eventDate == null) ? 0 : eventDate.hashCode());
+		result = prime * result + ((eventId == null) ? 0 : eventId.hashCode());
+		result = prime * result + ((eventPostcode == null) ? 0 : eventPostcode.hashCode());
+		return result;
 	}
 
 	@Override
@@ -133,8 +138,10 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "Event [eventId=" + eventId + ", eventPostcode=" + eventPostcode + ", eventCapacity=" + eventCapacity
-				+ ", eventDate=" + eventDate + "]";
+		return "eventId=" + eventId + ", eventPostcode=" + eventPostcode + ", eventCapacity=" + eventCapacity
+				+ ", eventDate=" + eventDate;
 	}
+	
+	
 
 }

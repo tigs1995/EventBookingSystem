@@ -36,7 +36,7 @@ public class CustomerControllerTest {
 	
 	private Customer testCustomer;
 	private Customer testCustomerWithID;
-	private Long id;
+	private Long custId;
 
 	private ObjectMapper mapper = new ObjectMapper();
 	
@@ -45,7 +45,7 @@ public class CustomerControllerTest {
 		this.customerRepo.deleteAll();
 		this.testCustomer = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "07192938495");
 		this.testCustomerWithID = this.customerRepo.save(testCustomer);
-		this.id = this.testCustomerWithID.getCustomerId();
+		this.custId = this.testCustomerWithID.getCustomerId();
 	}
 	
 	
@@ -72,11 +72,19 @@ public class CustomerControllerTest {
 	
 	@Test
 	public void testDeleteCustomer() throws Exception {
-		this.mock.perform(request(HttpMethod.DELETE, "/app/customer/" + this.id)).andExpect(status().isOk());
+		this.mock.perform(request(HttpMethod.DELETE, "/app/customer/" + this.custId)).andExpect(status().isOk());
 	}
 	
-	
-	
-	
+	@Test
+	public void testUpdateCustomer() throws Exception{
+		Customer newCustomerDetails = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "07192938495");
+		Customer updatedCustomer = new Customer(newCustomerDetails.getFirstName(), newCustomerDetails.getLastName(), newCustomerDetails.getCustomerEmail(), newCustomerDetails.getCustomerNumber());
+		updatedCustomer.setCustomerId(this.custId);
+		
+		String result = this.mock.perform(request(HttpMethod.PUT, "/app/customer/" + this.custId).accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON).content(this.mapper.writeValueAsString(newCustomerDetails)))
+				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+		assertEquals(this.mapper.writeValueAsString(updatedCustomer), result);
+	}
 
 }

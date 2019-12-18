@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +13,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bae.persistence.domain.Customer;
@@ -27,11 +30,18 @@ public class CustomerServiceTest {
 	@Mock
 	private CustomerRepository custRepo;
 		
-	Customer dummyCustomer = new Customer("James", "Kiesslinger", "jk@hotmail.com", "07968594856");
+	private Customer dummyCustomer;
+	
+	private Customer dummyCustomerWithID;
 
+	final Long custId = 1L;
+	
 	@Before
 	public void init() {
 		this.custRepo.deleteAll();
+		this.dummyCustomer = new Customer("James", "Kiesslinger", "jk@hotmail.com", "07968594856");
+		this.dummyCustomerWithID = new Customer(dummyCustomer.getFirstName(), dummyCustomer.getLastName(), dummyCustomer.getCustomerEmail(), dummyCustomer.getCustomerNumber());
+		this.dummyCustomerWithID.setCustomerId(custId);
 	}
 	
 	@Test
@@ -39,7 +49,6 @@ public class CustomerServiceTest {
 		List<Customer> customerList = new ArrayList<>();
 		customerList.add(this.dummyCustomer);
 		when(custRepo.findAll()).thenReturn(customerList);
-		System.out.println(customerList.get(0));
 		assertTrue("Returned no users!!", this.custService.getAllCustomers().size() > 0);
 	}
 
@@ -52,6 +61,17 @@ public class CustomerServiceTest {
 	@Test
 	public void deleteCustomerTest() {
 		assertEquals("Customer deleted successfully.", this.custService.deleteCustomer(0l));
+	}
+	
+	@Test
+	public void updateCustomerTest() {
+		Customer newCustomerDetails = new Customer("Tigs", "Knowles", "tigs@msn.com", "07182738495");
+		Customer updatedCustomer = new Customer(newCustomerDetails.getFirstName(), newCustomerDetails.getLastName(), newCustomerDetails.getCustomerEmail(), newCustomerDetails.getCustomerNumber());
+		updatedCustomer.setCustomerId(this.custId);
+		
+		when(this.custRepo.findById(this.custId)).thenReturn(Optional.of(this.dummyCustomerWithID));
+		when(this.custRepo.save(updatedCustomer)).thenReturn(updatedCustomer);
+		assertEquals(updatedCustomer, this.custService.updateCustomer(newCustomerDetails, this.custId));
 	}
 	
 	
