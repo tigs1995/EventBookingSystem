@@ -13,6 +13,8 @@ import com.bae.persistence.repository.CustomerRepository;
 public class CustomerService {
 	
 	private CustomerRepository customerRepo;
+	
+	private ValidationService validator = new ValidationService();
 
 	public CustomerService(CustomerRepository customerRepo) {
 		this.customerRepo = customerRepo;
@@ -23,6 +25,7 @@ public class CustomerService {
 	}
 	
 	public Customer addNewCustomer(Customer customerToAdd){
+		validator.customerEmailValidation(customerToAdd);
 		return customerRepo.save(customerToAdd);
 	}
 	
@@ -36,6 +39,7 @@ public class CustomerService {
 	}
 	
 	public Customer updateCustomer(Customer customer, Long customerId) {
+		validator.customerEmailValidation(customer);
 		Customer updatedCustomer = findCustomerByID(customerId);
 		updatedCustomer.setCustomerEmail(customer.getCustomerEmail());
 		updatedCustomer.setCustomerNumber(customer.getCustomerNumber());

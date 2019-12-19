@@ -40,12 +40,12 @@ public class EventServiceTest {
 	
 	final Long eventId = 1L;
 
-	Customer dummyCustomer = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "01928374859");
+	Customer dummyCustomer = new Customer("Tigs", "Knowles", "jkeisslinger@gmail.com", "01928374859");
 
 	@Before
 	public void init() {
 		this.eventRepo.deleteAll();
-		this.dummyEvent = new Event("HP54 9JW", 250, LocalDate.of(2019, 12, 02));
+		this.dummyEvent = new Event("HP54 9JW", 250, LocalDate.of(2023, 12, 02));
 		this.dummyEventWithID = new Event(dummyEvent.getEventPostcode(), dummyEvent.getEventCapacity(), dummyEvent.getEventDate());
 		this.dummyEventWithID.setEventId(eventId);
 	}
@@ -73,7 +73,7 @@ public class EventServiceTest {
 	
 	@Test
 	public void updateEventTest() {
-		Event newEventDetails = new Event("HP549JW", 250, LocalDate.of(2019, 12, 02));
+		Event newEventDetails = new Event("HP54 9JW", 250, LocalDate.of(2022, 12, 02));
 		Event updatedEvent = new Event(newEventDetails.getEventPostcode(), newEventDetails.getEventCapacity(), newEventDetails.getEventDate());
 		updatedEvent.setEventId(this.eventId);
 		

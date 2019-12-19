@@ -44,7 +44,7 @@ public class EventControllerTest {
 	@Mock
 	private CustomerRepository custRepoMock;
 	
-	private Event testEvent = new Event("HP2718Y", 250, LocalDate.of(2019, 12, 02));
+	private Event testEvent = new Event("HP27 9NQ", 250, LocalDate.of(2019, 12, 02));
 	private Event testEventWithID;
 	private Long custId;
 	private Long eventId;
@@ -59,6 +59,19 @@ public class EventControllerTest {
 		this.mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 		this.testEventWithID = this.eventRepo.save(testEvent);
 		this.eventId = testEventWithID.getEventId();
+	}
+	
+	@Test
+	public void testAddEvent() throws Exception{
+		dummyCustomer.setCustomerId(1L);
+		this.custId = this.dummyCustomer.getCustomerId();
+		Mockito.when(this.custRepoMock.findById(1L)).thenReturn(Optional.of(dummyCustomer));
+		String result = this.mock.perform(request(HttpMethod.POST, "/app/event/" + this.custId)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(this.mapper.writeValueAsString(testEvent))
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andReturn().getResponse().getContentAsString();
+		assertEquals(this.mapper.writeValueAsString(testEventWithID), result);
 	}
 
 
