@@ -45,7 +45,7 @@ public class EventServiceTest {
 	@Before
 	public void init() {
 		this.eventRepo.deleteAll();
-		this.dummyEvent = new Event("HP549JW", 250, LocalDate.of(2019, 12, 02));
+		this.dummyEvent = new Event("HP54 9JW", 250, LocalDate.of(2019, 12, 02));
 		this.dummyEventWithID = new Event(dummyEvent.getEventPostcode(), dummyEvent.getEventCapacity(), dummyEvent.getEventDate());
 		this.dummyEventWithID.setEventId(eventId);
 	}

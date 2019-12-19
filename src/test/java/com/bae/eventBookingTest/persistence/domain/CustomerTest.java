@@ -2,15 +2,12 @@ package com.bae.eventBookingTest.persistence.domain;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.bae.persistence.domain.Customer;
-import com.bae.persistence.domain.Event;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

@@ -61,18 +61,6 @@ public class EventControllerTest {
 		this.eventId = testEventWithID.getEventId();
 	}
 
-		@Test
-		public void testAddEvent() throws Exception{
-			dummyCustomer.setCustomerId(1L);
-			this.custId = this.dummyCustomer.getCustomerId();
-			Mockito.when(this.custRepoMock.findById(1L)).thenReturn(Optional.of(dummyCustomer));
-			String result = this.mock.perform(request(HttpMethod.POST, "/app/event/" + this.custId)
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(this.mapper.writeValueAsString(testEvent))
-					.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-					.andReturn().getResponse().getContentAsString();
-			assertEquals(this.mapper.writeValueAsString(testEventWithID), result);
-		}
 
 	@Test
 	public void testGetAllEvents() throws Exception {
