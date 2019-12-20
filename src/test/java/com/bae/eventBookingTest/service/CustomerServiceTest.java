@@ -38,7 +38,7 @@ public class CustomerServiceTest {
 	@Before
 	public void init() {
 		this.custRepo.deleteAll();
-		this.dummyCustomer = new Customer("James", "Kiesslinger", "jkeisslinger@hotmail.com", "07968594856");
+		this.dummyCustomer = new Customer("James", "Kiesslinger", "jkeisslinger@hotmail.com", "+1 (480) 848-1398");
 		this.dummyCustomerWithID = new Customer(dummyCustomer.getFirstName(), dummyCustomer.getLastName(), dummyCustomer.getCustomerEmail(), dummyCustomer.getCustomerNumber());
 		this.dummyCustomerWithID.setCustomerId(custId);
 	}
@@ -64,7 +64,7 @@ public class CustomerServiceTest {
 	
 	@Test
 	public void updateCustomerTest() {
-		Customer newCustomerDetails = new Customer("Tigs", "Knowles", "tigs@msn.com", "07182738495");
+		Customer newCustomerDetails = new Customer("Tigs", "Knowles", "tigs@msn.com", "+44 7182938495");
 		Customer updatedCustomer = new Customer(newCustomerDetails.getFirstName(), newCustomerDetails.getLastName(), newCustomerDetails.getCustomerEmail(), newCustomerDetails.getCustomerNumber());
 		updatedCustomer.setCustomerId(this.custId);
 		

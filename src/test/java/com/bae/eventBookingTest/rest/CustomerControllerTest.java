@@ -43,7 +43,7 @@ public class CustomerControllerTest {
 	@Before
 	public void init() {
 		this.customerRepo.deleteAll();
-		this.testCustomer = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "07192938495");
+		this.testCustomer = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "+447192938495");
 		this.testCustomerWithID = this.customerRepo.save(testCustomer);
 		this.custId = this.testCustomerWithID.getCustomerId();
 	}
@@ -77,7 +77,7 @@ public class CustomerControllerTest {
 	
 	@Test
 	public void testUpdateCustomer() throws Exception{
-		Customer newCustomerDetails = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "07192938495");
+		Customer newCustomerDetails = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "+447192938495");
 		Customer updatedCustomer = new Customer(newCustomerDetails.getFirstName(), newCustomerDetails.getLastName(), newCustomerDetails.getCustomerEmail(), newCustomerDetails.getCustomerNumber());
 		updatedCustomer.setCustomerId(this.custId);
 		
