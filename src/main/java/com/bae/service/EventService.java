@@ -1,8 +1,6 @@
 package com.bae.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +20,10 @@ public class EventService {
 
 	private CustomerRepository customerRepo;
 	
-	private Customer customer = new Customer();
+	private Customer customer;
 	
 	private String email;
-	
+		
 	private ValidationService validator = new ValidationService();
 
 	@Autowired
@@ -45,7 +43,7 @@ public class EventService {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setTo(email);
 
-		msg.setSubject("Testing from Spring Boot");
+		msg.setSubject("TESTTTT from Spring Boot");
 		msg.setText("Hello World \n Spring Boot Email");
 
 		javaMailSender.send(msg);
@@ -58,8 +56,10 @@ public class EventService {
 		validator.eventDateValidation(eventToAdd);
 		eventToAdd.setCustomer(this.customerRepo.findById(custid)
 				.orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist")));
-		this.customer = this.customerRepo.findById(custid);
+		this.customer = this.customerRepo.findById(custid).orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist"));
 		this.email = this.customer.getCustomerEmail();
+		sendEmail(this.email);
+		
 		return eventRepo.save(eventToAdd);
 	}
 
