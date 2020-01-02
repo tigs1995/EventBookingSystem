@@ -44,7 +44,7 @@ public class EventControllerTest {
 	@Autowired
 	private CustomerRepository custRepo;
 	
-	private Event testEvent = new Event("HP28 9WQ", 250, LocalDate.of(2019, 12, 31));
+	private Event testEvent = new Event("HP28 9WQ", 250, LocalDate.of(2020, 12, 19));
 	private Event testEventWithID;
 	private Long custId;
 	private Long eventId;
@@ -98,7 +98,7 @@ public class EventControllerTest {
 	
 	@Test
 	public void testUpdateEvent() throws Exception{
-		Event newEventDetails = new Event("HP54 9JW", 250, LocalDate.of(2019, 12, 29));
+		Event newEventDetails = new Event("HP54 9JW", 250, LocalDate.of(2020, 12, 19));
 		Event updatedEvent = new Event(newEventDetails.getEventPostcode(), newEventDetails.getEventCapacity(), newEventDetails.getEventDate());
 		updatedEvent.setEventId(this.eventId);
 		
