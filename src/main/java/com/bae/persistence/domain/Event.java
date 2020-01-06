@@ -1,7 +1,6 @@
 package com.bae.persistence.domain;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Event {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "eventId")
@@ -25,12 +21,10 @@ public class Event {
 	private String eventPostcode;
 
 	@Column(name = "eventCapacity")
-	private String eventCapacity;
+	private int eventCapacity;
 
 	@Column(name = "eventDate")
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	@Temporal(TemporalType.DATE)
-	private Date eventDate;
+	private LocalDate eventDate;
 
 	@ManyToOne
 	@JoinColumn(name = "customerId")
@@ -44,7 +38,24 @@ public class Event {
 		this.customer = customer;
 	}
 
+	public Event(String eventPostcode, int eventCapacity, LocalDate eventDate, Customer customer) {
+		super();
+		this.eventPostcode = eventPostcode;
+		this.eventCapacity = eventCapacity;
+		this.eventDate = eventDate;
+		this.customer = customer;
+	}
+	
+	
 	public Event() {
+
+	}
+	
+	//for Event Service test purposes 
+	public Event(String eventPostcode, int eventCapacity, LocalDate eventDate) {
+		this.eventPostcode = eventPostcode;
+		this.eventCapacity = eventCapacity;
+		this.eventDate = eventDate;
 	}
 
 	public Long getEventId() {
@@ -63,20 +74,32 @@ public class Event {
 		this.eventPostcode = eventPostcode;
 	}
 
-	public String getEventCapacity() {
+	public int getEventCapacity() {
 		return eventCapacity;
 	}
 
-	public void setEventCapacity(String eventCapacity) {
+	public void setEventCapacity(int eventCapacity) {
 		this.eventCapacity = eventCapacity;
 	}
 
-	public Date getEventDate() {
+	public LocalDate getEventDate() {
 		return eventDate;
 	}
 
-	public void setEventDate(Date eventDate) {
+	public void setEventDate(LocalDate eventDate) {
 		this.eventDate = eventDate;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+		result = prime * result + eventCapacity;
+		result = prime * result + ((eventDate == null) ? 0 : eventDate.hashCode());
+		result = prime * result + ((eventId == null) ? 0 : eventId.hashCode());
+		result = prime * result + ((eventPostcode == null) ? 0 : eventPostcode.hashCode());
+		return result;
 	}
 
 	@Override
@@ -88,10 +111,12 @@ public class Event {
 		if (getClass() != obj.getClass())
 			return false;
 		Event other = (Event) obj;
-		if (eventCapacity == null) {
-			if (other.eventCapacity != null)
+		if (customer == null) {
+			if (other.customer != null)
 				return false;
-		} else if (!eventCapacity.equals(other.eventCapacity))
+		} else if (!customer.equals(other.customer))
+			return false;
+		if (eventCapacity != other.eventCapacity)
 			return false;
 		if (eventDate == null) {
 			if (other.eventDate != null)
@@ -113,8 +138,10 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "Event [eventId=" + eventId + ", eventPostcode=" + eventPostcode + ", eventCapacity=" + eventCapacity
-				+ ", eventDate=" + eventDate + "]";
+		return "eventId=" + eventId + ", eventPostcode=" + eventPostcode + ", eventCapacity=" + eventCapacity
+				+ ", eventDate=" + eventDate;
 	}
+	
+	
 
 }

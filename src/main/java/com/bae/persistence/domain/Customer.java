@@ -23,6 +23,7 @@ public class Customer {
 	private Set<Event> events;
 
 	public Customer() {
+		
 	}
 
 	public Customer(String firstName, String lastName, String customerEmail, String customerNumber) {
@@ -75,6 +76,19 @@ public class Customer {
 
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((customerEmail == null) ? 0 : customerEmail.hashCode());
+		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
+		result = prime * result + ((customerNumber == null) ? 0 : customerNumber.hashCode());
+		result = prime * result + ((events == null) ? 0 : events.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -98,6 +112,11 @@ public class Customer {
 				return false;
 		} else if (!customerNumber.equals(other.customerNumber))
 			return false;
+		if (events == null) {
+			if (other.events != null)
+				return false;
+		} else if (!events.equals(other.events))
+			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -114,8 +133,9 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", customerEmail=" + customerEmail + ", customerNumber=" + customerNumber + ", eventId="
-				+ "]";
+				+ ", customerEmail=" + customerEmail + ", customerNumber=" + customerNumber	+ "]";
 	}
+	
+	
 
 }
