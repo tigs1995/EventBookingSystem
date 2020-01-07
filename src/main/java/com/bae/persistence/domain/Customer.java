@@ -38,11 +38,11 @@ public class Customer {
 		
 	}
 
-	public Customer(String firstName, String lastName, String customerEmail, String customerNumber) {
+	public Customer(String firstName, String lastName, String email, String customerNumber) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = customerEmail;
+		this.email = email;
 		this.customerNumber = customerNumber;
 	}
 
