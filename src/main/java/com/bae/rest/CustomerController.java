@@ -30,6 +30,11 @@ public class CustomerController {
 	public List<Customer> getAllCustomer(){
 		return service.getAllCustomers();
 	}
+	
+	@GetMapping("/checkExisting/{email}")
+	public boolean checkExisting(@PathVariable("email") String email) {
+		return this.service.checkExisting(email);
+	}
 
 	@PostMapping("/customer")
 	public Customer addNewCustomer(@RequestBody Customer customerToAdd){

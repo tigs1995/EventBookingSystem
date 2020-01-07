@@ -195,7 +195,7 @@ public class ValidationServiceTest {
 	@Test
 	public void emailBlankTest() {
 		boolean thrown = false;
-		this.customerDetails.setCustomerEmail("");
+		this.customerDetails.setEmail("");
 		try {
 			this.validation.customerEmailValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -208,7 +208,7 @@ public class ValidationServiceTest {
 	@Test
 	public void incorrectEmailTest() {
 		boolean thrown = false;
-		this.customerDetails.setCustomerEmail("tigs.msn.com");
+		this.customerDetails.setEmail("tigs.msn.com");
 		try {
 			this.validation.customerEmailValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -221,7 +221,7 @@ public class ValidationServiceTest {
 	@Test
 	public void incorrectEmailTest2() {
 		boolean thrown = false;
-		this.customerDetails.setCustomerEmail("tigs@msncom");
+		this.customerDetails.setEmail("tigs@msncom");
 		try {
 			this.validation.customerEmailValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -233,7 +233,7 @@ public class ValidationServiceTest {
 	@Test
 	public void correctEmailTest() {
 		boolean thrown = true;
-		this.customerDetails.setCustomerEmail("tigs@msn.com");
+		this.customerDetails.setEmail("tigs@msn.com");
 		try {
 			this.validation.customerEmailValidation(this.customerDetails);
 		} catch (ValidationException e) {

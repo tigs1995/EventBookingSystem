@@ -45,7 +45,7 @@ public class ValidationService {
 	public void customerEmailValidation(Customer custToAdd){
 		String regexForValidation = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";
 		Pattern pattern = Pattern.compile(regexForValidation);
-		if (pattern.matcher(custToAdd.getCustomerEmail()).matches() != true) {
+		if (pattern.matcher(custToAdd.getEmail()).matches() != true) {
 			throw new ValidationException("Invalid email.");  
 		}
 		

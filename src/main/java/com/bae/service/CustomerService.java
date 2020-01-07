@@ -47,12 +47,16 @@ public class CustomerService {
 		validator.customerFirstNameValidation(customerToAdd);
 		validator.customerLastNameValidation(customerToAdd);
 		Customer updatedCustomer = findCustomerByID(customerId);
-		updatedCustomer.setCustomerEmail(customerToAdd.getCustomerEmail());
+		updatedCustomer.setEmail(customerToAdd.getEmail());
 		updatedCustomer.setCustomerNumber(customerToAdd.getCustomerNumber());
 		updatedCustomer.setFirstName(customerToAdd.getFirstName());
 		updatedCustomer.setLastName(customerToAdd.getLastName());
 		return this.customerRepo.save(updatedCustomer);
 		
+	}
+
+	public boolean checkExisting(String email) {
+		return this.customerRepo.existsByEmail(email);
 	}
 
 	

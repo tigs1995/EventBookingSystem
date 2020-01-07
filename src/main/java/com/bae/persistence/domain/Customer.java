@@ -19,7 +19,7 @@ public class Customer {
 	private Long customerId;
 	private String firstName;
 	private String lastName;
-	private String customerEmail;
+	private String email;
 	private String customerNumber;
 
 	@JsonIgnore
@@ -42,7 +42,7 @@ public class Customer {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.customerEmail = customerEmail;
+		this.email = customerEmail;
 		this.customerNumber = customerNumber;
 	}
 
@@ -70,12 +70,12 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public String getCustomerEmail() {
-		return customerEmail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCustomerEmail(String customerEmail) {
-		this.customerEmail = customerEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCustomerNumber() {
@@ -91,7 +91,7 @@ public class Customer {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((customerEmail == null) ? 0 : customerEmail.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
 		result = prime * result + ((customerNumber == null) ? 0 : customerNumber.hashCode());
 		result = prime * result + ((events == null) ? 0 : events.hashCode());
@@ -109,10 +109,10 @@ public class Customer {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
-		if (customerEmail == null) {
-			if (other.customerEmail != null)
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!customerEmail.equals(other.customerEmail))
+		} else if (!email.equals(other.email))
 			return false;
 		if (customerId == null) {
 			if (other.customerId != null)
@@ -145,7 +145,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", customerEmail=" + customerEmail + ", customerNumber=" + customerNumber	+ "]";
+				+ ", customerEmail=" + email + ", customerNumber=" + customerNumber	+ "]";
 	}
 	
 	

@@ -29,8 +29,8 @@ public class CustomerTest {
 
 	@Test
 	public void testSetGetEmail() {
-		testCustomer.setCustomerEmail("tigs@hotmail.com");
-		assertEquals("tigs@hotmail.com", this.testCustomer.getCustomerEmail());
+		testCustomer.setEmail("tigs@hotmail.com");
+		assertEquals("tigs@hotmail.com", this.testCustomer.getEmail());
 	}
 
 	@Test

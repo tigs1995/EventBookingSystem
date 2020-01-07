@@ -83,7 +83,7 @@ public class EventService {
 		this.firstNameCaps = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
 		this.lastName = this.customer.getLastName().toLowerCase();
 		this.lastNameCaps = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
-		this.email = this.customer.getCustomerEmail();
+		this.email = this.customer.getEmail();
 		this.phone = this.customer.getCustomerNumber();
 		this.custNumber = custid;
 		this.postcode = eventToAdd.getEventPostcode();
