@@ -55,8 +55,8 @@ public class CustomerService {
 		
 	}
 
-	public boolean checkExisting(String email) {
-		return this.customerRepo.existsByEmail(email);
+	public boolean checkExisting(Long custid) {
+		return this.customerRepo.existsById(custid);
 	}
 
 	
