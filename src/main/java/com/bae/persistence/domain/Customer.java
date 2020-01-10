@@ -23,7 +23,7 @@ public class Customer {
 	private String phone;
 
 	@JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "customer", orphanRemoval=true)
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "customer")
 	private Set<Event> events;
 	public Set<Event> getEvents()  
     {  

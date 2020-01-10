@@ -56,7 +56,7 @@ public class CustomerControllerTest {
 				.content(this.mapper.writeValueAsString(testCustomerWithID))
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andReturn().getResponse().getContentAsString();
-		assertEquals(this.mapper.writeValueAsString(testCustomerWithID), result);
+		assertEquals(this.mapper.writeValueAsString(testCustomerWithID.getCustomerId()), result);
 	}
 	
 	@Test
