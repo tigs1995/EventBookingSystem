@@ -20,10 +20,10 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String customerNumber;
+	private String phone;
 
 	@JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "customer")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "customer", orphanRemoval=true)
 	private Set<Event> events;
 	public Set<Event> getEvents()  
     {  
@@ -38,12 +38,12 @@ public class Customer {
 		
 	}
 
-	public Customer(String firstName, String lastName, String email, String customerNumber) {
+	public Customer(String firstName, String lastName, String email, String phone) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.customerNumber = customerNumber;
+		this.phone = phone;
 	}
 
 	public Long getCustomerId() {
@@ -78,12 +78,12 @@ public class Customer {
 		this.email = email;
 	}
 
-	public String getCustomerNumber() {
-		return customerNumber;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setCustomerNumber(String customerNumber) {
-		this.customerNumber = customerNumber;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 
@@ -93,7 +93,7 @@ public class Customer {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
-		result = prime * result + ((customerNumber == null) ? 0 : customerNumber.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((events == null) ? 0 : events.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -119,10 +119,10 @@ public class Customer {
 				return false;
 		} else if (!customerId.equals(other.customerId))
 			return false;
-		if (customerNumber == null) {
-			if (other.customerNumber != null)
+		if (phone == null) {
+			if (other.phone != null)
 				return false;
-		} else if (!customerNumber.equals(other.customerNumber))
+		} else if (!phone.equals(other.phone))
 			return false;
 		if (events == null) {
 			if (other.events != null)
@@ -145,7 +145,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", customerEmail=" + email + ", customerNumber=" + customerNumber	+ "]";
+				+ ", customerEmail=" + email + ", customerPhone" + phone	+ "]";
 	}
 	
 	

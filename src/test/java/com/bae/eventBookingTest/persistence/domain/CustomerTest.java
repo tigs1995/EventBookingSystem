@@ -35,8 +35,8 @@ public class CustomerTest {
 
 	@Test
 	public void testSetGetNumber() {
-		testCustomer.setCustomerNumber("07493849586");
-		assertEquals("07493849586", this.testCustomer.getCustomerNumber());	}
+		testCustomer.setPhone("07493849586");
+		assertEquals("07493849586", this.testCustomer.getPhone());	}
 	
 	@Test public void equalsFalseTest2() {
 	    Customer customer1 = new Customer("Tigs", "Knowles", "tigs@msn.com", "07384958675");

@@ -35,11 +35,12 @@ public class CustomerController {
 	public boolean checkExisting(@PathVariable("custid") Long custid) {
 		return this.service.checkExisting(custid);
 	}
-
+	
 	@PostMapping("/customer")
-	public Customer addNewCustomer(@RequestBody Customer customerToAdd){
-		return service.addNewCustomer(customerToAdd);
-	}
+	public Long addNewCustomer(@RequestBody Customer customerToAdd){
+		Customer customer = service.addNewCustomer(customerToAdd);
+		return customer.getCustomerId();
+	}	
 	
 	@DeleteMapping("/customer/{custid}")
 	public String deleteCustomer(@PathVariable("custid") Long custId){

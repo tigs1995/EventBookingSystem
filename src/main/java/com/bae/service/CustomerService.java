@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.domain.Customer;
+import com.bae.persistence.domain.Event;
 import com.bae.persistence.repository.CustomerRepository;
+import com.bae.persistence.repository.EventRepository;
 
 @Service
 public class CustomerService {
@@ -15,6 +18,9 @@ public class CustomerService {
 	private CustomerRepository customerRepo;
 	
 	private ValidationService validator = new ValidationService();
+	
+	@Autowired
+	private EventRepository eventRepo;
 
 	public CustomerService(CustomerRepository customerRepo) {
 		this.customerRepo = customerRepo;
@@ -33,6 +39,9 @@ public class CustomerService {
 	}
 	
 	public String deleteCustomer(Long primaryKeyOfCustomer){
+		for (Event event : this.eventRepo.findAll()) {
+			this.eventRepo.delete(event);
+		}
 		this.customerRepo.deleteById(primaryKeyOfCustomer);
 		return "Customer deleted successfully.";
 	}
@@ -48,7 +57,7 @@ public class CustomerService {
 		validator.customerLastNameValidation(customerToAdd);
 		Customer updatedCustomer = findCustomerByID(customerId);
 		updatedCustomer.setEmail(customerToAdd.getEmail());
-		updatedCustomer.setCustomerNumber(customerToAdd.getCustomerNumber());
+		updatedCustomer.setPhone(customerToAdd.getPhone());
 		updatedCustomer.setFirstName(customerToAdd.getFirstName());
 		updatedCustomer.setLastName(customerToAdd.getLastName());
 		return this.customerRepo.save(updatedCustomer);
@@ -59,7 +68,6 @@ public class CustomerService {
 		return this.customerRepo.existsById(custid);
 	}
 
-	
 	
 	
 }

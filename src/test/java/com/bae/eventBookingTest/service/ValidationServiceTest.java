@@ -92,7 +92,7 @@ public class ValidationServiceTest {
 	@Test
 	public void phoneBlankTest() {
 		boolean thrown = false;
-		this.customerDetails.setCustomerNumber("");
+		this.customerDetails.setPhone("");
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -105,7 +105,7 @@ public class ValidationServiceTest {
 	@Test
 	public void incorrectPhoneTest() {
 		boolean thrown = false;
-		this.customerDetails.setCustomerNumber("+44 738");
+		this.customerDetails.setPhone("+44 738");
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -114,11 +114,11 @@ public class ValidationServiceTest {
 		assertTrue(thrown);
 	}
 
-	// Test it fails if it doesn't start with +44
+	// Test it fails if it is too short by 1
 	@Test
 	public void incorrectPhoneTest2() {
 		boolean thrown = false;
-		this.customerDetails.setCustomerNumber("07382938475");
+		this.customerDetails.setPhone("0738293847");
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -131,7 +131,7 @@ public class ValidationServiceTest {
 	@Test
 	public void incorrectPhoneTest3() {
 		boolean thrown = false;
-		this.customerDetails.setCustomerNumber("+44728ggg2637");
+		this.customerDetails.setPhone("+44728ggg2637");
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -144,7 +144,7 @@ public class ValidationServiceTest {
 	@Test
 	public void ukMobileTest() {
 		boolean thrown = true;
-		this.customerDetails.setCustomerNumber("+44 7182938495");
+		this.customerDetails.setPhone("+44 7182938495");
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -157,33 +157,7 @@ public class ValidationServiceTest {
 	@Test
 	public void ukLandlineTest() {
 		boolean thrown = true;
-		this.customerDetails.setCustomerNumber("+441494839283");
-		try {
-			this.validation.customerPhoneValidation(this.customerDetails);
-		} catch (ValidationException e) {
-			thrown = false;
-		}
-		assertTrue(thrown);
-	}
-
-	// Test American Mobile
-	@Test
-	public void americanMobileTest() {
-		boolean thrown = true;
-		this.customerDetails.setCustomerNumber("+1 (480) 848-1398");
-		try {
-			this.validation.customerPhoneValidation(this.customerDetails);
-		} catch (ValidationException e) {
-			thrown = false;
-		}
-		assertTrue(thrown);
-	}
-
-	// Test French Mobile
-	@Test
-	public void frenchMobileTest() {
-		boolean thrown = true;
-		this.customerDetails.setCustomerNumber("+33 6 17 40 56 84");
+		this.customerDetails.setPhone("+441494839283");
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {

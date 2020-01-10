@@ -84,7 +84,7 @@ public class EventService {
 		this.lastName = this.customer.getLastName().toLowerCase();
 		this.lastNameCaps = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
 		this.email = this.customer.getEmail();
-		this.phone = this.customer.getCustomerNumber();
+		this.phone = this.customer.getPhone();
 		this.custNumber = custid;
 		this.postcode = eventToAdd.getEventPostcode();
 		this.capacity = eventToAdd.getEventCapacity();
@@ -98,6 +98,8 @@ public class EventService {
 		eventRepo.deleteById(primaryKeyOfEvent);
 		return "Event deleted successfully.";
 	}
+	
+	
 
 	public Event findEventByID(Long eventId) {
 		return this.eventRepo.findById(eventId).orElseThrow(() -> new EntityNotFoundException("Event Does Not Exist"));

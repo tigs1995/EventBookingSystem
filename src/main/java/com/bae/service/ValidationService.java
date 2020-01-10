@@ -54,7 +54,7 @@ public class ValidationService {
 	public void customerPhoneValidation(Customer custToAdd){
 		String regexForValidation = "^(((\\+44\\s?\\d{4}|\\(?0\\d{4}\\)?)\\s?\\d{3}\\s?\\d{3})|((\\+44\\s?\\d{3}|\\(?0\\d{3}\\)?)\\s?\\d{3}\\s?\\d{4})|((\\+44\\s?\\d{2}|\\(?0\\d{2}\\)?)\\s?\\d{4}\\s?\\d{4}))(\\s?\\#(\\d{4}|\\d{3}))?$";
 		Pattern pattern = Pattern.compile(regexForValidation);
-		if (pattern.matcher(custToAdd.getCustomerNumber()).matches() != true) {
+		if (pattern.matcher(custToAdd.getPhone()).matches() != true) {
 			throw new ValidationException("Invalid phone number.");  
 		}
 		

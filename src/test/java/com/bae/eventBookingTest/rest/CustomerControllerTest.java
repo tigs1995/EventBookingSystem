@@ -78,7 +78,7 @@ public class CustomerControllerTest {
 	@Test
 	public void testUpdateCustomer() throws Exception{
 		Customer newCustomerDetails = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "+447192938495");
-		Customer updatedCustomer = new Customer(newCustomerDetails.getFirstName(), newCustomerDetails.getLastName(), newCustomerDetails.getEmail(), newCustomerDetails.getCustomerNumber());
+		Customer updatedCustomer = new Customer(newCustomerDetails.getFirstName(), newCustomerDetails.getLastName(), newCustomerDetails.getEmail(), newCustomerDetails.getPhone());
 		updatedCustomer.setCustomerId(this.custId);
 		
 		String result = this.mock.perform(request(HttpMethod.PUT, "/app/customer/" + this.custId).accept(MediaType.APPLICATION_JSON)
