@@ -22,6 +22,7 @@ import com.bae.persistence.domain.Event;
 import com.bae.persistence.repository.CustomerRepository;
 import com.bae.persistence.repository.EventRepository;
 import com.bae.service.CustomerService;
+import com.bae.service.ValidationService;
 
 @RunWith(SpringRunner.class)
 public class CustomerServiceTest {
@@ -31,6 +32,9 @@ public class CustomerServiceTest {
 
 	@Mock
 	private CustomerRepository custRepo;
+	
+	@Mock
+	private ValidationService validator;
 	
 	@Mock
 	private EventRepository eventRepo;
@@ -67,14 +71,16 @@ public class CustomerServiceTest {
 		assertEquals(this.dummyCustomer, this.custService.addNewCustomer(this.dummyCustomer));
 	}
 	
-//	@Test
-//	public void deleteCustomerTest() {
-//		this.eventList.add(this.event);
-//		when(this.eventRepo.findAll()).thenReturn(eventList);
-//		when(this.eventRepo.delete(event)).thenReturn("Event deleted successfully.");
-//		
-//		assertEquals("Customer deleted successfully.", this.custService.deleteCustomer(0l));
-//	}
+	@Test
+	public void deleteCustomerTest() {
+		this.event.setCustomer(this.dummyCustomerWithID);
+		this.event.setEventId(1L);
+		this.eventList.add(this.event);
+		
+		when(this.eventRepo.findAll()).thenReturn(this.eventList);
+
+		assertEquals("Customer deleted successfully.", this.custService.deleteCustomer(1L));
+	}
 	
 	@Test
 	public void updateCustomerTest() {

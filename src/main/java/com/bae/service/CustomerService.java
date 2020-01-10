@@ -40,7 +40,9 @@ public class CustomerService {
 	
 	public String deleteCustomer(Long primaryKeyOfCustomer){
 		for (Event event : this.eventRepo.findAll()) {
-			this.eventRepo.delete(event);
+			if (event.getCustomer().getCustomerId() == primaryKeyOfCustomer) {
+				this.eventRepo.deleteById(event.getEventId());
+			}
 		}
 		this.customerRepo.deleteById(primaryKeyOfCustomer);
 		return "Customer deleted successfully.";
