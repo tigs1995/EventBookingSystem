@@ -31,7 +31,7 @@ public class CustomerController {
 		return service.getAllCustomers();
 	}
 	
-	@GetMapping("/checkExisting/{custid}")
+	@GetMapping("/checkExistingCust/{custid}")
 	public boolean checkExisting(@PathVariable("custid") Long custid) {
 		return this.service.checkExisting(custid);
 	}

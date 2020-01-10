@@ -7,5 +7,7 @@ import com.bae.persistence.domain.Event;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
+	
+	boolean existsById(Long custid);
 
 }

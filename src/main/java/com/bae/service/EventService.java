@@ -115,4 +115,8 @@ public class EventService {
 		toUpdate.setEventPostcode(eventToAdd.getEventPostcode());
 		return this.eventRepo.save(toUpdate);
 	}
+
+	public boolean checkExisting(Long eventid) {
+		return this.eventRepo.existsById(eventid);
+	}
 }
