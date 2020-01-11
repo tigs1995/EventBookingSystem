@@ -326,15 +326,15 @@ public class ValidationServiceTest {
 		assertTrue(thrown);
 	}
 
-	// Test it fails if it has a space
+	// Test it passes if it has a space
 	@Test
-	public void incorrectPostcodeTest2() {
-		boolean thrown = false;
-		this.eventDetails.setEventPostcode("HL389QW");
+	public void correctPostcodeTest2() {
+		boolean thrown = true;
+		this.eventDetails.setEventPostcode("HL38 9QW");
 		try {
 			this.validation.eventPostcodeValidation(this.eventDetails);
 		} catch (ValidationException e) {
-			thrown = true;
+			thrown = false;
 		}
 		assertTrue(thrown);
 	}

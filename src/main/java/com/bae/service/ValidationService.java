@@ -11,7 +11,7 @@ import com.bae.persistence.domain.Event;
 public class ValidationService {
 	
 	public void eventPostcodeValidation(Event eventToAdd){
-		String regexForValidation = "^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][AaBbD-Hd-hJjLlNnP-Up-uW-Zw-z]{2}$";
+		String regexForValidation = "^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][AaBbD-Hd-hJjLlNnP-Up-uW-Zw-z]{2}$";
 		Pattern pattern = Pattern.compile(regexForValidation);
 		if (pattern.matcher(eventToAdd.getEventPostcode()).matches() != true) {
 			throw new ValidationException("Wrong postcode format.");

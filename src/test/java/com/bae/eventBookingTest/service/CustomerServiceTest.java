@@ -76,9 +76,7 @@ public class CustomerServiceTest {
 		this.event.setCustomer(this.dummyCustomerWithID);
 		this.event.setEventId(1L);
 		this.eventList.add(this.event);
-		
 		when(this.eventRepo.findAll()).thenReturn(this.eventList);
-
 		assertEquals("Customer deleted successfully.", this.custService.deleteCustomer(1L));
 	}
 	
