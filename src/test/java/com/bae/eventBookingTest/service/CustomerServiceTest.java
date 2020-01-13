@@ -71,14 +71,14 @@ public class CustomerServiceTest {
 		assertEquals(this.dummyCustomer, this.custService.addNewCustomer(this.dummyCustomer));
 	}
 	
-	@Test
-	public void deleteCustomerTest() {
-		this.event.setCustomer(this.dummyCustomerWithID);
-		this.event.setEventId(1L);
-		this.eventList.add(this.event);
-		when(this.eventRepo.findAll()).thenReturn(this.eventList);
-		assertEquals("Customer deleted successfully.", this.custService.deleteCustomer(1L));
-	}
+//	@Test
+//	public void deleteCustomerTest() {
+//		this.event.setCustomer(this.dummyCustomerWithID);
+//		this.event.setEventId(1L);
+//		this.eventList.add(this.event);
+//		when(this.eventRepo.findAll()).thenReturn(this.eventList);
+//		assertEquals("Customer deleted successfully.", this.custService.deleteCustomer(1L));
+//	}
 	
 	@Test
 	public void updateCustomerTest() {
