@@ -45,8 +45,8 @@ public class EventService {
 		
 	private ValidationService validator = new ValidationService();
 
-	@Autowired
-	private JavaMailSender javaMailSender;
+//	@Autowired
+//	private JavaMailSender javaMailSender;
 
 	public EventService(EventRepository eventRepo, CustomerRepository customerRepo) {
 		this.eventRepo = eventRepo;
@@ -57,20 +57,20 @@ public class EventService {
 		return eventRepo.findAll();
 	}
 
-	public void sendEmail(String email) {
-
-		SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setFrom("toastclubltd@gmail.com");
-
-		msg.setSubject("Confirmation of event enquiry - Customer Number: " + this.custNumber);
-		msg.setText("Dear " + this.firstNameCaps + " " + this.lastNameCaps + ",\n \n Thank you for your enquiry. Please see your details below:\n "
-				+ "Customer Phone Number: " + this.phone + "\n Event Postcode: " + this.postcode 
-				+ "\n Event Capacity: " + this.capacity + "\nEvent Date: " + this.date + ". \n \n Please let us know if any of this is incorrect."
-				+ "We will be in touch with a quote. \n Please use your customer number when booking future events (" + this.custNumber + ")."
-				+ "\n \n Kind Regards, \n The Toast Club Ltd");
-		javaMailSender.send(msg);
-
-	}
+//	public void sendEmail(String email) {
+//
+//		SimpleMailMessage msg = new SimpleMailMessage();
+//		msg.setFrom("toastclubltd@gmail.com");
+//
+//		msg.setSubject("Confirmation of event enquiry - Customer Number: " + this.custNumber);
+//		msg.setText("Dear " + this.firstNameCaps + " " + this.lastNameCaps + ",\n \n Thank you for your enquiry. Please see your details below:\n "
+//				+ "Customer Phone Number: " + this.phone + "\n Event Postcode: " + this.postcode 
+//				+ "\n Event Capacity: " + this.capacity + "\nEvent Date: " + this.date + ". \n \n Please let us know if any of this is incorrect."
+//				+ "We will be in touch with a quote. \n Please use your customer number when booking future events (" + this.custNumber + ")."
+//				+ "\n \n Kind Regards, \n The Toast Club Ltd");
+//		javaMailSender.send(msg);
+//
+//	}
 
 	public Event addNewEvent(Event eventToAdd, Long custid) {
 		validator.eventPostcodeValidation(eventToAdd);
@@ -89,7 +89,7 @@ public class EventService {
 		this.postcode = eventToAdd.getEventPostcode();
 		this.capacity = eventToAdd.getEventCapacity();
 		this.date = eventToAdd.getEventDate().toString();
-		sendEmail(this.email);
+//		sendEmail(this.email);
 		
 		return eventRepo.save(eventToAdd);
 	}
