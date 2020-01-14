@@ -60,7 +60,7 @@ public class EventService {
 	public void sendEmail(String email) {
 
 		SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setTo(email);
+		msg.setFrom("toastclubltd@gmail.com");
 
 		msg.setSubject("Confirmation of event enquiry - Customer Number: " + this.custNumber);
 		msg.setText("Dear " + this.firstNameCaps + " " + this.lastNameCaps + ",\n \n Thank you for your enquiry. Please see your details below:\n "
