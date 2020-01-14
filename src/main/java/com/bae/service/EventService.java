@@ -45,8 +45,8 @@ public class EventService {
 		
 	private ValidationService validator = new ValidationService();
 
-	@Autowired
-	private JavaMailSender javaMailSender;
+//	@Autowired
+//	private JavaMailSender javaMailSender;
 
 	public EventService(EventRepository eventRepo, CustomerRepository customerRepo) {
 		this.eventRepo = eventRepo;
@@ -89,7 +89,7 @@ public class EventService {
 		this.postcode = eventToAdd.getEventPostcode();
 		this.capacity = eventToAdd.getEventCapacity();
 		this.date = eventToAdd.getEventDate().toString();
-		sendEmail(this.email);
+//		sendEmail(this.email);
 		
 		return eventRepo.save(eventToAdd);
 	}

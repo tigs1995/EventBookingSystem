@@ -22,7 +22,6 @@ import com.bae.persistence.domain.Customer;
 import com.bae.persistence.repository.CustomerRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -48,7 +47,6 @@ public class CustomerControllerTest {
 		this.custId = this.testCustomerWithID.getCustomerId();
 	}
 	
-	
 	@Test
 	public void testAddCustomer() throws Exception{
 		String result = this.mock.perform(request(HttpMethod.POST, "/app/customer")
@@ -70,11 +68,11 @@ public class CustomerControllerTest {
 		assertEquals(this.mapper.writeValueAsString(customerList), result);
 	}
 	
-//	@Test
-//	public void testDeleteCustomer() throws Exception {
+	@Test
+	public void testDeleteCustomer() throws Exception {
 //		this.mock.perform(request(HttpMethod.DELETE, "/app/customer/" + this.custId)).andExpect(status().isOk());
-//	}
-//	
+	}
+	
 	@Test
 	public void testUpdateCustomer() throws Exception{
 		Customer newCustomerDetails = new Customer("Tigs", "Knowles", "tigs@hotmail.com", "+447192938495");
