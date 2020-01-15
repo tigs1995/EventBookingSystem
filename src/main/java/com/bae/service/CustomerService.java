@@ -16,14 +16,13 @@ import com.bae.persistence.repository.EventRepository;
 public class CustomerService {
 	
 	private CustomerRepository customerRepo;
-	
-	private ValidationService validator = new ValidationService();
-	
-	@Autowired
+	private ValidationService validator;
 	private EventRepository eventRepo;
-
-	public CustomerService(CustomerRepository customerRepo) {
+	
+	public CustomerService(CustomerRepository customerRepo, EventRepository eventRepo, ValidationService validator ) {
 		this.customerRepo = customerRepo;
+		this.eventRepo = eventRepo;
+		this.validator = validator;
 	}
 	
 	public List<Customer> getAllCustomers(){
@@ -39,7 +38,7 @@ public class CustomerService {
 	}
 	
 	public String deleteCustomer(Long primaryKeyOfCustomer){
-		for (Event event : this.eventRepo.findAll()) {
+		for (Event event : this.eventRepo.findAll()	) {
 			if (event.getCustomer().getCustomerId() == primaryKeyOfCustomer) {
 				this.eventRepo.deleteById(event.getEventId());
 			}

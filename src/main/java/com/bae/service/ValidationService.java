@@ -5,9 +5,12 @@ import java.util.regex.Pattern;
 
 import javax.validation.ValidationException;
 
+import org.springframework.stereotype.Service;
+
 import com.bae.persistence.domain.Customer;
 import com.bae.persistence.domain.Event;
 
+@Service
 public class ValidationService {
 	
 	public void eventPostcodeValidation(Event eventToAdd){
