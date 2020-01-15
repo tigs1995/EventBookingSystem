@@ -21,6 +21,7 @@ import com.bae.persistence.domain.Event;
 import com.bae.persistence.repository.CustomerRepository;
 import com.bae.persistence.repository.EventRepository;
 import com.bae.service.EventService;
+import com.bae.service.ValidationService;
 
 @RunWith(SpringRunner.class)
 public class EventServiceTest {
@@ -33,6 +34,9 @@ public class EventServiceTest {
 
 	@Mock
 	private CustomerRepository custRepo;
+	
+	@Mock
+	private ValidationService validator;
 	
 	private Event dummyEvent;
 	
