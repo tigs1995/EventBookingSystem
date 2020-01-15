@@ -49,11 +49,12 @@ public class EventService {
 	
 	private String date;
 		
-	private ValidationService validator = new ValidationService();
+	private ValidationService validator;
 
-	public EventService(EventRepository eventRepo, CustomerRepository customerRepo) {
+	public EventService(EventRepository eventRepo, CustomerRepository customerRepo, ValidationService validator) {
 		this.eventRepo = eventRepo;
 		this.customerRepo = customerRepo;
+		this.validator = validator;
 	}
 
 	public List<Event> getAllEvents() {
@@ -115,7 +116,7 @@ public class EventService {
 		this.postcode = eventToAdd.getEventPostcode();
 		this.capacity = eventToAdd.getEventCapacity();
 		this.date = eventToAdd.getEventDate().toString();
-//		sendEmail(this.email);
+		sendEmail(this.email);
 		
 		return eventRepo.save(eventToAdd);
 	}
