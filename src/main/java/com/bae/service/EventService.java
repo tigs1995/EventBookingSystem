@@ -1,6 +1,5 @@
 package com.bae.service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Properties;
 
@@ -28,17 +27,11 @@ public class EventService {
 	private CustomerRepository customerRepo;
 	
 	private Customer customer;
-	
-	private String firstName;
-	
+		
 	private String firstNameCaps;
-	
-	private String lastName;
-	
+		
 	private String lastNameCaps;
-	
-	private String email;
-	
+		
 	private String phone;
 	
 	private Long custNumber;
@@ -92,31 +85,32 @@ public class EventService {
 
             Transport.send(message);
 
-            System.out.println("Done");
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
 	}
 
 	public Event addNewEvent(Event eventToAdd, Long custid) {
+		String firstName;
+		String lastName;
+		String email;
 		validator.eventPostcodeValidation(eventToAdd);
 		validator.eventCapacityValidation(eventToAdd);
 		validator.eventDateValidation(eventToAdd);
 		eventToAdd.setCustomer(this.customerRepo.findById(custid)
 				.orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist")));
 		this.customer = this.customerRepo.findById(custid).orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist"));
-		this.firstName = this.customer.getFirstName().toLowerCase();
+		firstName = this.customer.getFirstName().toLowerCase();
 		this.firstNameCaps = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
-		this.lastName = this.customer.getLastName().toLowerCase();
+		lastName = this.customer.getLastName().toLowerCase();
 		this.lastNameCaps = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
-		this.email = this.customer.getEmail();
+		email = this.customer.getEmail();
 		this.phone = this.customer.getPhone();
 		this.custNumber = custid;
 		this.postcode = eventToAdd.getEventPostcode();
 		this.capacity = eventToAdd.getEventCapacity();
 		this.date = eventToAdd.getEventDate().toString();
-		sendEmail(this.email);
+		sendEmail(email);
 		
 		return eventRepo.save(eventToAdd);
 	}

@@ -23,19 +23,19 @@ public class Customer {
 	private String phone;
 
 	@JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "customer")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
 	private Set<Event> events;
-	public Set<Event> getEvents()  
-    {  
-        return this.events;  
-    }  
-    public void setEvents(Set<Event> events)  
-    {  
-        this.events = events;  
-    }  
+
+	public Set<Event> getEvents() {
+		return this.events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
 
 	public Customer() {
-		
+
 	}
 
 	public Customer(String firstName, String lastName, String email, String phone) {
@@ -86,7 +86,6 @@ public class Customer {
 		this.phone = phone;
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -112,32 +111,38 @@ public class Customer {
 		if (email == null) {
 			if (other.email != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} 
+		else if (!email.equals(other.email))
 			return false;
 		if (customerId == null) {
 			if (other.customerId != null)
 				return false;
-		} else if (!customerId.equals(other.customerId))
+		} 
+		else if (!customerId.equals(other.customerId))
 			return false;
 		if (phone == null) {
 			if (other.phone != null)
 				return false;
-		} else if (!phone.equals(other.phone))
+		} 
+		else if (!phone.equals(other.phone))
 			return false;
 		if (events == null) {
 			if (other.events != null)
 				return false;
-		} else if (!events.equals(other.events))
+		} 
+		else if (!events.equals(other.events))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
-		} else if (!firstName.equals(other.firstName))
+		} 
+		else if (!firstName.equals(other.firstName))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
-		} else if (!lastName.equals(other.lastName))
+		} 
+		else if (!lastName.equals(other.lastName))
 			return false;
 		return true;
 	}
@@ -145,9 +150,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", customerEmail=" + email + ", customerPhone" + phone	+ "]";
+				+ ", customerEmail=" + email + ", customerPhone" + phone + "]";
 	}
-	
-	
 
 }

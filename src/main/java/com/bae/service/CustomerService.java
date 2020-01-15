@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.domain.Customer;
@@ -39,7 +38,7 @@ public class CustomerService {
 	
 	public String deleteCustomer(Long primaryKeyOfCustomer){
 		for (Event event : this.eventRepo.findAll()	) {
-			if (event.getCustomer().getCustomerId() == primaryKeyOfCustomer) {
+			if (event.getCustomer().getCustomerId().equals(primaryKeyOfCustomer)) {
 				this.eventRepo.deleteById(event.getEventId());
 			}
 		}

@@ -114,24 +114,28 @@ public class Event {
 		if (customer == null) {
 			if (other.customer != null)
 				return false;
-		} else if (!customer.equals(other.customer))
+		} 
+		else if (!customer.equals(other.customer))
 			return false;
 		if (eventCapacity != other.eventCapacity)
 			return false;
 		if (eventDate == null) {
 			if (other.eventDate != null)
 				return false;
-		} else if (!eventDate.equals(other.eventDate))
+		} 
+		else if (!eventDate.equals(other.eventDate))
 			return false;
 		if (eventId == null) {
 			if (other.eventId != null)
 				return false;
-		} else if (!eventId.equals(other.eventId))
+		} 
+		else if (!eventId.equals(other.eventId))
 			return false;
 		if (eventPostcode == null) {
 			if (other.eventPostcode != null)
 				return false;
-		} else if (!eventPostcode.equals(other.eventPostcode))
+		} 
+		else if (!eventPostcode.equals(other.eventPostcode))
 			return false;
 		return true;
 	}
