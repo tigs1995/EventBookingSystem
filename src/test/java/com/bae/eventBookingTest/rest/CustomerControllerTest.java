@@ -68,10 +68,10 @@ public class CustomerControllerTest {
 		assertEquals(this.mapper.writeValueAsString(customerList), result);
 	}
 	
-	@Test
-	public void testDeleteCustomer() throws Exception {
-//		this.mock.perform(request(HttpMethod.DELETE, "/app/customer/" + this.custId)).andExpect(status().isOk());
-	}
+//	@Test
+//	public void testDeleteCustomer() throws Exception {
+////		this.mock.perform(request(HttpMethod.DELETE, "/app/customer/" + this.custId)).andExpect(status().isOk());
+//	}
 	
 	@Test
 	public void testUpdateCustomer() throws Exception{
