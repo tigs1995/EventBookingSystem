@@ -58,13 +58,13 @@ public class EventServiceTest {
 		assertTrue("Returned no users!!", this.eventService.getAllEvents().size() > 0);
 	}
 
-//	@Test
-//	public void addEventTest() {
-//		dummyCustomer.setCustomerId(1L);
-//		when(this.custRepo.findById(1L)).thenReturn(Optional.of(dummyCustomer));
-//		when(this.eventRepo.save(dummyEvent)).thenReturn(dummyEvent);
-//		assertEquals(this.dummyEvent, this.eventService.addNewEvent(this.dummyEvent, 1L));
-//	}
+	@Test
+	public void addEventTest() {
+		dummyCustomer.setCustomerId(1L);
+		when(this.custRepo.findById(1L)).thenReturn(Optional.of(dummyCustomer));
+		when(this.eventRepo.save(dummyEvent)).thenReturn(dummyEvent);
+		assertEquals(this.dummyEvent, this.eventService.addNewEvent(this.dummyEvent, 1L));
+	}
 
 	@Test
 	public void deleteEventTest() {

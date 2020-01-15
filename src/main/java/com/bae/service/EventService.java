@@ -51,9 +51,6 @@ public class EventService {
 		
 	private ValidationService validator = new ValidationService();
 
-//	@Autowired
-//	private JavaMailSender javaMailSender;
-
 	public EventService(EventRepository eventRepo, CustomerRepository customerRepo) {
 		this.eventRepo = eventRepo;
 		this.customerRepo = customerRepo;
@@ -81,14 +78,16 @@ public class EventService {
           });
 
         try {
-
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("toastclubltd@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(email));
-            message.setSubject("A testing mail header !!!");
-            message.setText("Dear Mail Crawler,"
-                + "\n\n No spam to my email, please!");
+            message.setSubject("Confirmation of event enquiry - Customer Number: " + this.custNumber);
+            message.setText("Dear " + this.firstNameCaps + " " + this.lastNameCaps + ",\n \n Thank you for your enquiry. Please see your details below:\n "
+    				+ "Customer Phone Number: " + this.phone + "\n Event Postcode: " + this.postcode 
+    				+ "\n Event Capacity: " + this.capacity + "\nEvent Date: " + this.date + ". \n \n Please let us know if any of this is incorrect."
+    				+ "We will be in touch with a quote. \n Please use your customer number when booking future events (" + this.custNumber + ")."
+    				+ "\n \n Kind Regards, \n The Toast Club Ltd");
 
             Transport.send(message);
 
@@ -98,22 +97,6 @@ public class EventService {
             throw new RuntimeException(e);
         }
 	}
-	
-
-//	public void sendEmail(String email) {
-//
-//		SimpleMailMessage msg = new SimpleMailMessage();
-//		msg.setFrom("toastclubltd@gmail.com");
-//
-//		msg.setSubject("Confirmation of event enquiry - Customer Number: " + this.custNumber);
-//		msg.setText("Dear " + this.firstNameCaps + " " + this.lastNameCaps + ",\n \n Thank you for your enquiry. Please see your details below:\n "
-//				+ "Customer Phone Number: " + this.phone + "\n Event Postcode: " + this.postcode 
-//				+ "\n Event Capacity: " + this.capacity + "\nEvent Date: " + this.date + ". \n \n Please let us know if any of this is incorrect."
-//				+ "We will be in touch with a quote. \n Please use your customer number when booking future events (" + this.custNumber + ")."
-//				+ "\n \n Kind Regards, \n The Toast Club Ltd");
-//		javaMailSender.send(msg);
-//
-//	}
 
 	public Event addNewEvent(Event eventToAdd, Long custid) {
 		validator.eventPostcodeValidation(eventToAdd);

@@ -63,23 +63,23 @@ public class EventControllerTest {
 		dummyCustomer.setCustomerId(1L);
 	}
 	
-//	@Test
-//	public void testAddEvent() throws Exception{
-//		this.custId = this.dummyCustomer.getCustomerId();
-//
-//		this.testEvent.setCustomer(dummyCustomer);
-//		String result = this.mock.perform(
-//				request(HttpMethod.POST, "/app/event/" + this.custId)
-//				.accept(MediaType.APPLICATION_JSON)
-//				.contentType(MediaType.APPLICATION_JSON).content(this.mapper.writeValueAsString(testEvent)))
-//				.andExpect(status().isOk())
-//				.andReturn()
-//				.getResponse()
-//				.getContentAsString();
-//		
-//
-//		assertEquals(this.mapper.writeValueAsString(testEventWithID), result);
-//	}
+	@Test
+	public void testAddEvent() throws Exception{
+		this.custId = this.dummyCustomer.getCustomerId();
+
+		this.testEvent.setCustomer(dummyCustomer);
+		String result = this.mock.perform(
+				request(HttpMethod.POST, "/app/event/" + this.custId)
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON).content(this.mapper.writeValueAsString(testEvent)))
+				.andExpect(status().isOk())
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+		
+
+		assertEquals(this.mapper.writeValueAsString(testEventWithID), result);
+	}
 
 	@Test
 	public void testGetAllEvents() throws Exception {
