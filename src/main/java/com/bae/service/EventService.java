@@ -115,7 +115,7 @@ public class EventService {
 		this.postcode = eventToAdd.getEventPostcode();
 		this.capacity = eventToAdd.getEventCapacity();
 		this.date = eventToAdd.getEventDate().toString();
-		sendEmail(this.email);
+//		sendEmail(this.email);
 		
 		return eventRepo.save(eventToAdd);
 	}
