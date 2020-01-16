@@ -25,9 +25,7 @@ public class EventService {
 	private EventRepository eventRepo;
 
 	private CustomerRepository customerRepo;
-	
-	private Customer customer;
-		
+			
 	private String firstNameCaps;
 		
 	private String lastNameCaps;
@@ -91,6 +89,7 @@ public class EventService {
 	}
 
 	public Event addNewEvent(Event eventToAdd, Long custid) {
+		Customer customer;
 		String firstName;
 		String lastName;
 		String email;
@@ -99,13 +98,13 @@ public class EventService {
 		validator.eventDateValidation(eventToAdd);
 		eventToAdd.setCustomer(this.customerRepo.findById(custid)
 				.orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist")));
-		this.customer = this.customerRepo.findById(custid).orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist"));
-		firstName = this.customer.getFirstName().toLowerCase();
+		customer = this.customerRepo.findById(custid).orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist"));
+		firstName = customer.getFirstName().toLowerCase();
 		this.firstNameCaps = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
-		lastName = this.customer.getLastName().toLowerCase();
+		lastName = customer.getLastName().toLowerCase();
 		this.lastNameCaps = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
-		email = this.customer.getEmail();
-		this.phone = this.customer.getPhone();
+		email = customer.getEmail();
+		this.phone = customer.getPhone();
 		this.custNumber = custid;
 		this.postcode = eventToAdd.getEventPostcode();
 		this.capacity = eventToAdd.getEventCapacity();
