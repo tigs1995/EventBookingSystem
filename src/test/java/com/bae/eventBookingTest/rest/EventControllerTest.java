@@ -41,10 +41,10 @@ public class EventControllerTest {
 	@Autowired
 	private EventRepository eventRepo;
 	
-	@Mock
-	private CustomerRepository custRepoMock;
+	@Autowired
+	private CustomerRepository custRepo;
 	
-	private Event testEvent = new Event("HP2718Y", 250, LocalDate.of(2019, 12, 02));
+	private Event testEvent = new Event("HP28 9WQ", 250, LocalDate.of(2019, 12, 31));
 	private Event testEventWithID;
 	private Long custId;
 	private Long eventId;
@@ -57,10 +57,29 @@ public class EventControllerTest {
 		this.eventRepo.deleteAll();
 		this.mapper.registerModule(new JavaTimeModule());
 		this.mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+		custRepo.save(dummyCustomer);
 		this.testEventWithID = this.eventRepo.save(testEvent);
 		this.eventId = testEventWithID.getEventId();
+		dummyCustomer.setCustomerId(1L);
 	}
+	
+	@Test
+	public void testAddEvent() throws Exception{
+		this.custId = this.dummyCustomer.getCustomerId();
 
+		this.testEvent.setCustomer(dummyCustomer);
+		String result = this.mock.perform(
+				request(HttpMethod.POST, "/app/event/" + this.custId)
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON).content(this.mapper.writeValueAsString(testEvent)))
+				.andExpect(status().isOk())
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+		
+
+		assertEquals(this.mapper.writeValueAsString(testEventWithID), result);
+	}
 
 	@Test
 	public void testGetAllEvents() throws Exception {
@@ -79,7 +98,7 @@ public class EventControllerTest {
 	
 	@Test
 	public void testUpdateEvent() throws Exception{
-		Event newEventDetails = new Event("HP549JW", 250, LocalDate.of(2019, 12, 02));
+		Event newEventDetails = new Event("HP54 9JW", 250, LocalDate.of(2019, 12, 29));
 		Event updatedEvent = new Event(newEventDetails.getEventPostcode(), newEventDetails.getEventCapacity(), newEventDetails.getEventDate());
 		updatedEvent.setEventId(this.eventId);
 		
