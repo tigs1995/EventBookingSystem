@@ -30,11 +30,25 @@ public class CustomerController {
 	public List<Customer> getAllCustomer(){
 		return service.getAllCustomers();
 	}
+<<<<<<< HEAD
+	
+	@GetMapping("/checkExistingCust/{custid}")
+	public boolean checkExisting(@PathVariable("custid") Long custid) {
+		return this.service.checkExisting(custid);
+	}
+	
+	@PostMapping("/customer")
+	public Long addNewCustomer(@RequestBody Customer customerToAdd){
+		Customer customer = service.addNewCustomer(customerToAdd);
+		return customer.getCustomerId();
+	}	
+=======
 
 	@PostMapping("/customer")
 	public Customer addNewCustomer(@RequestBody Customer customerToAdd){
 		return service.addNewCustomer(customerToAdd);
 	}
+>>>>>>> mergefix
 	
 	@DeleteMapping("/customer/{custid}")
 	public String deleteCustomer(@PathVariable("custid") Long custId){

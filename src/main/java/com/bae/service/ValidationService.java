@@ -5,6 +5,20 @@ import java.util.regex.Pattern;
 
 import javax.validation.ValidationException;
 
+<<<<<<< HEAD
+import org.springframework.stereotype.Service;
+
+import com.bae.persistence.domain.Customer;
+import com.bae.persistence.domain.Event;
+
+@Service
+public class ValidationService {
+	
+	public void eventPostcodeValidation(Event eventToAdd){
+		String regexForValidation = "^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][AaBbD-Hd-hJjLlNnP-Up-uW-Zw-z]{2}$";
+		Pattern pattern = Pattern.compile(regexForValidation);
+		if (!pattern.matcher(eventToAdd.getEventPostcode()).matches()) {
+=======
 import com.bae.persistence.domain.Customer;
 import com.bae.persistence.domain.Event;
 
@@ -14,6 +28,7 @@ public class ValidationService {
 		String regexForValidation = "^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][AaBbD-Hd-hJjLlNnP-Up-uW-Zw-z]{2}$";
 		Pattern pattern = Pattern.compile(regexForValidation);
 		if (pattern.matcher(eventToAdd.getEventPostcode()).matches() != true) {
+>>>>>>> mergefix
 			throw new ValidationException("Wrong postcode format.");
 		}
 		
@@ -45,16 +60,26 @@ public class ValidationService {
 	public void customerEmailValidation(Customer custToAdd){
 		String regexForValidation = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";
 		Pattern pattern = Pattern.compile(regexForValidation);
+<<<<<<< HEAD
+		if (!pattern.matcher(custToAdd.getEmail()).matches()) {
+=======
 		if (pattern.matcher(custToAdd.getCustomerEmail()).matches() != true) {
+>>>>>>> mergefix
 			throw new ValidationException("Invalid email.");  
 		}
 		
 	}
 	
 	public void customerPhoneValidation(Customer custToAdd){
+<<<<<<< HEAD
+		String regexForValidation = "^(((\\+44\\s?\\d{4}|\\(?0\\d{4}\\)?)\\s?\\d{3}\\s?\\d{3})|((\\+44\\s?\\d{3}|\\(?0\\d{3}\\)?)\\s?\\d{3}\\s?\\d{4})|((\\+44\\s?\\d{2}|\\(?0\\d{2}\\)?)\\s?\\d{4}\\s?\\d{4}))(\\s?\\#(\\d{4}|\\d{3}))?$";
+		Pattern pattern = Pattern.compile(regexForValidation);
+		if (!pattern.matcher(custToAdd.getPhone()).matches()) {
+=======
 		String regexForValidation = "((?:\\+|00)[17](?: |\\-)?|(?:\\+|00)[1-9]\\d{0,2}(?: |\\-)?|(?:\\+|00)1\\-\\d{3}(?: |\\-)?)?(0\\d|\\([0-9]{3}\\)|[1-9]{0,3})(?:((?: |\\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\\-)[0-9]{3}(?: |\\-)[0-9]{4})|([0-9]{7}))";
 		Pattern pattern = Pattern.compile(regexForValidation);
 		if (pattern.matcher(custToAdd.getCustomerNumber()).matches() != true) {
+>>>>>>> mergefix
 			throw new ValidationException("Invalid phone number.");  
 		}
 		

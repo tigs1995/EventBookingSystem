@@ -92,7 +92,11 @@ public class ValidationServiceTest {
 	@Test
 	public void phoneBlankTest() {
 		boolean thrown = false;
+<<<<<<< HEAD
+		this.customerDetails.setPhone("");
+=======
 		this.customerDetails.setCustomerNumber("");
+>>>>>>> mergefix
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -105,7 +109,11 @@ public class ValidationServiceTest {
 	@Test
 	public void incorrectPhoneTest() {
 		boolean thrown = false;
+<<<<<<< HEAD
+		this.customerDetails.setPhone("+44 738");
+=======
 		this.customerDetails.setCustomerNumber("+44 738");
+>>>>>>> mergefix
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -114,11 +122,19 @@ public class ValidationServiceTest {
 		assertTrue(thrown);
 	}
 
+<<<<<<< HEAD
+	// Test it fails if it is too short by 1
+	@Test
+	public void incorrectPhoneTest2() {
+		boolean thrown = false;
+		this.customerDetails.setPhone("0738293847");
+=======
 	// Test it fails if it doesn't start with +44
 	@Test
 	public void incorrectPhoneTest2() {
 		boolean thrown = false;
 		this.customerDetails.setCustomerNumber("07382938475");
+>>>>>>> mergefix
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -131,7 +147,11 @@ public class ValidationServiceTest {
 	@Test
 	public void incorrectPhoneTest3() {
 		boolean thrown = false;
+<<<<<<< HEAD
+		this.customerDetails.setPhone("+44728ggg2637");
+=======
 		this.customerDetails.setCustomerNumber("+44728ggg2637");
+>>>>>>> mergefix
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -144,7 +164,11 @@ public class ValidationServiceTest {
 	@Test
 	public void ukMobileTest() {
 		boolean thrown = true;
+<<<<<<< HEAD
+		this.customerDetails.setPhone("+44 7182938495");
+=======
 		this.customerDetails.setCustomerNumber("+44 7182938495");
+>>>>>>> mergefix
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -157,6 +181,9 @@ public class ValidationServiceTest {
 	@Test
 	public void ukLandlineTest() {
 		boolean thrown = true;
+<<<<<<< HEAD
+		this.customerDetails.setPhone("+441494839283");
+=======
 		this.customerDetails.setCustomerNumber("+441494839283");
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
@@ -184,6 +211,7 @@ public class ValidationServiceTest {
 	public void frenchMobileTest() {
 		boolean thrown = true;
 		this.customerDetails.setCustomerNumber("+33 6 17 40 56 84");
+>>>>>>> mergefix
 		try {
 			this.validation.customerPhoneValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -195,7 +223,11 @@ public class ValidationServiceTest {
 	@Test
 	public void emailBlankTest() {
 		boolean thrown = false;
+<<<<<<< HEAD
+		this.customerDetails.setEmail("");
+=======
 		this.customerDetails.setCustomerEmail("");
+>>>>>>> mergefix
 		try {
 			this.validation.customerEmailValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -208,7 +240,11 @@ public class ValidationServiceTest {
 	@Test
 	public void incorrectEmailTest() {
 		boolean thrown = false;
+<<<<<<< HEAD
+		this.customerDetails.setEmail("tigs.msn.com");
+=======
 		this.customerDetails.setCustomerEmail("tigs.msn.com");
+>>>>>>> mergefix
 		try {
 			this.validation.customerEmailValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -221,7 +257,11 @@ public class ValidationServiceTest {
 	@Test
 	public void incorrectEmailTest2() {
 		boolean thrown = false;
+<<<<<<< HEAD
+		this.customerDetails.setEmail("tigs@msncom");
+=======
 		this.customerDetails.setCustomerEmail("tigs@msncom");
+>>>>>>> mergefix
 		try {
 			this.validation.customerEmailValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -233,7 +273,11 @@ public class ValidationServiceTest {
 	@Test
 	public void correctEmailTest() {
 		boolean thrown = true;
+<<<<<<< HEAD
+		this.customerDetails.setEmail("tigs@msn.com");
+=======
 		this.customerDetails.setCustomerEmail("tigs@msn.com");
+>>>>>>> mergefix
 		try {
 			this.validation.customerEmailValidation(this.customerDetails);
 		} catch (ValidationException e) {
@@ -352,6 +396,17 @@ public class ValidationServiceTest {
 		assertTrue(thrown);
 	}
 
+<<<<<<< HEAD
+	// Test it passes if it has a space
+	@Test
+	public void correctPostcodeTest2() {
+		boolean thrown = true;
+		this.eventDetails.setEventPostcode("HL38 9QW");
+		try {
+			this.validation.eventPostcodeValidation(this.eventDetails);
+		} catch (ValidationException e) {
+			thrown = false;
+=======
 	// Test it fails if it has a space
 	@Test
 	public void incorrectPostcodeTest2() {
@@ -361,6 +416,7 @@ public class ValidationServiceTest {
 			this.validation.eventPostcodeValidation(this.eventDetails);
 		} catch (ValidationException e) {
 			thrown = true;
+>>>>>>> mergefix
 		}
 		assertTrue(thrown);
 	}
