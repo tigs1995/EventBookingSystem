@@ -56,7 +56,7 @@ public class EventService {
 	
 	public void sendEmail(String email) {
 		final String username = "toastclubltd@gmail.com";
-        final String password = "magojmftzpoaumkg";
+        final String pwd = "magojmftzpoaumkg";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -67,7 +67,7 @@ public class EventService {
         Session session = Session.getInstance(props,
           new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(username, pwd);
             }
           });
 
