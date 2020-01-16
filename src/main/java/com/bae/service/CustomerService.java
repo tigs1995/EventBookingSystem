@@ -7,14 +7,19 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.domain.Customer;
+<<<<<<< HEAD
 import com.bae.persistence.domain.Event;
 import com.bae.persistence.repository.CustomerRepository;
 import com.bae.persistence.repository.EventRepository;
+=======
+import com.bae.persistence.repository.CustomerRepository;
+>>>>>>> mergefix
 
 @Service
 public class CustomerService {
 	
 	private CustomerRepository customerRepo;
+<<<<<<< HEAD
 	private ValidationService validator;
 	private EventRepository eventRepo;
 	
@@ -22,6 +27,13 @@ public class CustomerService {
 		this.customerRepo = customerRepo;
 		this.eventRepo = eventRepo;
 		this.validator = validator;
+=======
+	
+	private ValidationService validator = new ValidationService();
+
+	public CustomerService(CustomerRepository customerRepo) {
+		this.customerRepo = customerRepo;
+>>>>>>> mergefix
 	}
 	
 	public List<Customer> getAllCustomers(){
@@ -37,11 +49,14 @@ public class CustomerService {
 	}
 	
 	public String deleteCustomer(Long primaryKeyOfCustomer){
+<<<<<<< HEAD
 		for (Event event : this.eventRepo.findAll()	) {
 			if (event.getCustomer().getCustomerId().equals(primaryKeyOfCustomer)) {
 				this.eventRepo.deleteById(event.getEventId());
 			}
 		}
+=======
+>>>>>>> mergefix
 		this.customerRepo.deleteById(primaryKeyOfCustomer);
 		return "Customer deleted successfully.";
 	}
@@ -56,18 +71,27 @@ public class CustomerService {
 		validator.customerFirstNameValidation(customerToAdd);
 		validator.customerLastNameValidation(customerToAdd);
 		Customer updatedCustomer = findCustomerByID(customerId);
+<<<<<<< HEAD
 		updatedCustomer.setEmail(customerToAdd.getEmail());
 		updatedCustomer.setPhone(customerToAdd.getPhone());
+=======
+		updatedCustomer.setCustomerEmail(customerToAdd.getCustomerEmail());
+		updatedCustomer.setCustomerNumber(customerToAdd.getCustomerNumber());
+>>>>>>> mergefix
 		updatedCustomer.setFirstName(customerToAdd.getFirstName());
 		updatedCustomer.setLastName(customerToAdd.getLastName());
 		return this.customerRepo.save(updatedCustomer);
 		
 	}
 
+<<<<<<< HEAD
 	public boolean checkExisting(Long custid) {
 		return this.customerRepo.existsById(custid);
 	}
 
+=======
+	
+>>>>>>> mergefix
 	
 	
 }

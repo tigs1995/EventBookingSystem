@@ -1,6 +1,7 @@
 package com.bae.service;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +15,17 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityNotFoundException;
 
+=======
+import javax.persistence.EntityNotFoundException;
+>>>>>>> mergefix
 import org.springframework.stereotype.Service;
 
 import com.bae.persistence.repository.CustomerRepository;
 import com.bae.persistence.repository.EventRepository;
+<<<<<<< HEAD
 import com.bae.persistence.domain.Customer;
+=======
+>>>>>>> mergefix
 import com.bae.persistence.domain.Event;
 
 @Service
@@ -27,6 +34,7 @@ public class EventService {
 	private EventRepository eventRepo;
 
 	private CustomerRepository customerRepo;
+<<<<<<< HEAD
 			
 	private String firstNameCaps;
 		
@@ -97,11 +105,27 @@ public class EventService {
 		String firstName;
 		String lastName;
 		String email;
+=======
+	
+	private ValidationService validator = new ValidationService();
+
+	public EventService(EventRepository eventRepo, CustomerRepository customerRepo) {
+		this.eventRepo = eventRepo;
+		this.customerRepo = customerRepo;
+	}
+	
+	public List<Event> getAllEvents() {
+		return eventRepo.findAll();
+	}
+
+	public Event addNewEvent(Event eventToAdd, Long custid) {
+>>>>>>> mergefix
 		validator.eventPostcodeValidation(eventToAdd);
 		validator.eventCapacityValidation(eventToAdd);
 		validator.eventDateValidation(eventToAdd);
 		eventToAdd.setCustomer(this.customerRepo.findById(custid)
 				.orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist")));
+<<<<<<< HEAD
 		customer = this.customerRepo.findById(custid).orElseThrow(() -> new EntityNotFoundException("Customer Does Not Exist"));
 		firstName = customer.getFirstName().toLowerCase();
 		this.firstNameCaps = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
@@ -115,6 +139,8 @@ public class EventService {
 		this.date = eventToAdd.getEventDate().toString();
 		sendEmail(email);
 		
+=======
+>>>>>>> mergefix
 		return eventRepo.save(eventToAdd);
 	}
 
@@ -122,8 +148,11 @@ public class EventService {
 		eventRepo.deleteById(primaryKeyOfEvent);
 		return "Event deleted successfully.";
 	}
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> mergefix
 
 	public Event findEventByID(Long eventId) {
 		return this.eventRepo.findById(eventId).orElseThrow(() -> new EntityNotFoundException("Event Does Not Exist"));
@@ -138,9 +167,13 @@ public class EventService {
 		toUpdate.setEventDate(eventToAdd.getEventDate());
 		toUpdate.setEventPostcode(eventToAdd.getEventPostcode());
 		return this.eventRepo.save(toUpdate);
+<<<<<<< HEAD
 	}
 
 	public boolean checkExisting(Long eventid) {
 		return this.eventRepo.existsById(eventid);
+=======
+
+>>>>>>> mergefix
 	}
 }

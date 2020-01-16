@@ -6,8 +6,13 @@ import com.bae.persistence.domain.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long>{
+<<<<<<< HEAD
 
 	
 	boolean existsById(Long custid);
 	
+=======
+	
+
+>>>>>>> mergefix
 }

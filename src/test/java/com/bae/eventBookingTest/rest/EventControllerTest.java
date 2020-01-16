@@ -44,7 +44,11 @@ public class EventControllerTest {
 	@Autowired
 	private CustomerRepository custRepo;
 	
+<<<<<<< HEAD
 	private Event testEvent = new Event("HP28 9WQ", 250, LocalDate.of(2020, 12, 19));
+=======
+	private Event testEvent = new Event("HP28 9WQ", 250, LocalDate.of(2019, 12, 31));
+>>>>>>> mergefix
 	private Event testEventWithID;
 	private Long custId;
 	private Long eventId;
@@ -63,6 +67,7 @@ public class EventControllerTest {
 		dummyCustomer.setCustomerId(1L);
 	}
 	
+<<<<<<< HEAD
 //	@Test
 //	public void testAddEvent() throws Exception{
 //		this.custId = this.dummyCustomer.getCustomerId();
@@ -80,6 +85,25 @@ public class EventControllerTest {
 //
 //		assertEquals(this.mapper.writeValueAsString(testEventWithID), result);
 //	}
+=======
+	@Test
+	public void testAddEvent() throws Exception{
+		this.custId = this.dummyCustomer.getCustomerId();
+
+		this.testEvent.setCustomer(dummyCustomer);
+		String result = this.mock.perform(
+				request(HttpMethod.POST, "/app/event/" + this.custId)
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON).content(this.mapper.writeValueAsString(testEvent)))
+				.andExpect(status().isOk())
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+		
+
+		assertEquals(this.mapper.writeValueAsString(testEventWithID), result);
+	}
+>>>>>>> mergefix
 
 	@Test
 	public void testGetAllEvents() throws Exception {
@@ -98,7 +122,11 @@ public class EventControllerTest {
 	
 	@Test
 	public void testUpdateEvent() throws Exception{
+<<<<<<< HEAD
 		Event newEventDetails = new Event("HP54 9JW", 250, LocalDate.of(2020, 12, 19));
+=======
+		Event newEventDetails = new Event("HP54 9JW", 250, LocalDate.of(2019, 12, 29));
+>>>>>>> mergefix
 		Event updatedEvent = new Event(newEventDetails.getEventPostcode(), newEventDetails.getEventCapacity(), newEventDetails.getEventDate());
 		updatedEvent.setEventId(this.eventId);
 		
