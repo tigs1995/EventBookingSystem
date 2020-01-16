@@ -8,6 +8,7 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityNotFoundException;
@@ -64,6 +65,7 @@ public class EventService {
 
         Session session = Session.getInstance(props,
           new javax.mail.Authenticator() {
+        	@Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, pw);
             }
@@ -84,7 +86,7 @@ public class EventService {
             Transport.send(message);
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+        	e.printStackTrace();
         }
 	}
 
