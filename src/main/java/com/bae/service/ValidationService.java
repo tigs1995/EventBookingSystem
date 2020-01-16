@@ -16,7 +16,7 @@ public class ValidationService {
 	public void eventPostcodeValidation(Event eventToAdd){
 		String regexForValidation = "^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? ?[0-9][AaBbD-Hd-hJjLlNnP-Up-uW-Zw-z]{2}$";
 		Pattern pattern = Pattern.compile(regexForValidation);
-		if (pattern.matcher(eventToAdd.getEventPostcode()).matches() != true) {
+		if (!pattern.matcher(eventToAdd.getEventPostcode()).matches()) {
 			throw new ValidationException("Wrong postcode format.");
 		}
 		
@@ -48,7 +48,7 @@ public class ValidationService {
 	public void customerEmailValidation(Customer custToAdd){
 		String regexForValidation = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";
 		Pattern pattern = Pattern.compile(regexForValidation);
-		if (pattern.matcher(custToAdd.getEmail()).matches() != true) {
+		if (!pattern.matcher(custToAdd.getEmail()).matches()) {
 			throw new ValidationException("Invalid email.");  
 		}
 		
@@ -57,7 +57,7 @@ public class ValidationService {
 	public void customerPhoneValidation(Customer custToAdd){
 		String regexForValidation = "^(((\\+44\\s?\\d{4}|\\(?0\\d{4}\\)?)\\s?\\d{3}\\s?\\d{3})|((\\+44\\s?\\d{3}|\\(?0\\d{3}\\)?)\\s?\\d{3}\\s?\\d{4})|((\\+44\\s?\\d{2}|\\(?0\\d{2}\\)?)\\s?\\d{4}\\s?\\d{4}))(\\s?\\#(\\d{4}|\\d{3}))?$";
 		Pattern pattern = Pattern.compile(regexForValidation);
-		if (pattern.matcher(custToAdd.getPhone()).matches() != true) {
+		if (!pattern.matcher(custToAdd.getPhone()).matches()) {
 			throw new ValidationException("Invalid phone number.");  
 		}
 		
