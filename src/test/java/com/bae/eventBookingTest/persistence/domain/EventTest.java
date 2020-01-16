@@ -9,11 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-<<<<<<< HEAD
 
 import com.bae.persistence.domain.Customer;
-=======
->>>>>>> mergefix
 import com.bae.persistence.domain.Event;
 
 @RunWith(SpringRunner.class)
@@ -59,7 +56,6 @@ public class EventTest {
 	    Assert.assertTrue(x.equals(y) && y.equals(x));
 	    Assert.assertTrue(x.hashCode() == y.hashCode());
 	}
-<<<<<<< HEAD
 	
 	@Test
 	public void constructorTest() {
@@ -67,6 +63,4 @@ public class EventTest {
 		Event event = new Event("HP829HE", 250, LocalDate.of(2019, 12, 02), customer);
 		Assert.assertEquals("HP829HE", event.getEventPostcode());
 	}
-=======
->>>>>>> mergefix
 }

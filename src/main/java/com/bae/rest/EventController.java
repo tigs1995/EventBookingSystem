@@ -31,16 +31,12 @@ public class EventController {
 	public List<Event> getAllEvents(){
 		return service.getAllEvents();
 	}
-<<<<<<< HEAD
 	
 	@GetMapping("/checkExistingEvent/{eventid}")
 	public boolean checkExisting(@PathVariable("eventid") Long eventid) {
 		return this.service.checkExisting(eventid);
 	}
 	
-=======
-
->>>>>>> mergefix
 	@PostMapping("/event/{custid}")
 	public Event addNewEvent(@RequestBody Event eventToAdd, @PathVariable("custid") Long custid){
 		return service.addNewEvent(eventToAdd, custid);

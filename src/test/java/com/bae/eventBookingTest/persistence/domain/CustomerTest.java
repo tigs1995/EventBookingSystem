@@ -29,24 +29,14 @@ public class CustomerTest {
 
 	@Test
 	public void testSetGetEmail() {
-<<<<<<< HEAD
 		testCustomer.setEmail("tigs@hotmail.com");
 		assertEquals("tigs@hotmail.com", this.testCustomer.getEmail());
-=======
-		testCustomer.setCustomerEmail("tigs@hotmail.com");
-		assertEquals("tigs@hotmail.com", this.testCustomer.getCustomerEmail());
->>>>>>> mergefix
 	}
 
 	@Test
 	public void testSetGetNumber() {
-<<<<<<< HEAD
 		testCustomer.setPhone("07493849586");
 		assertEquals("07493849586", this.testCustomer.getPhone());	}
-=======
-		testCustomer.setCustomerNumber("07493849586");
-		assertEquals("07493849586", this.testCustomer.getCustomerNumber());	}
->>>>>>> mergefix
 	
 	@Test public void equalsFalseTest2() {
 	    Customer customer1 = new Customer("Tigs", "Knowles", "tigs@msn.com", "07384958675");

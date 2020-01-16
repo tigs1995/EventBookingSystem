@@ -21,10 +21,7 @@ import com.bae.persistence.domain.Event;
 import com.bae.persistence.repository.CustomerRepository;
 import com.bae.persistence.repository.EventRepository;
 import com.bae.service.EventService;
-<<<<<<< HEAD
 import com.bae.service.ValidationService;
-=======
->>>>>>> mergefix
 
 @RunWith(SpringRunner.class)
 public class EventServiceTest {
@@ -38,12 +35,9 @@ public class EventServiceTest {
 	@Mock
 	private CustomerRepository custRepo;
 	
-<<<<<<< HEAD
 	@Mock
 	private ValidationService validator;
 	
-=======
->>>>>>> mergefix
 	private Event dummyEvent;
 	
 	private Event dummyEventWithID;

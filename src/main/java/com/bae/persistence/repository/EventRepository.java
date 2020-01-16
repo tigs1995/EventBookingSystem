@@ -7,10 +7,7 @@ import com.bae.persistence.domain.Event;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-<<<<<<< HEAD
 	
 	boolean existsById(Long custid);
-=======
->>>>>>> mergefix
 
 }
