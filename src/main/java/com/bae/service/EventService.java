@@ -2,13 +2,14 @@ package com.bae.service;
 
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityNotFoundException;
@@ -56,6 +57,7 @@ public class EventService {
 	public void sendEmail(String email) {
 		final String username = "toastclubltd@gmail.com";
         final String pw = "magojmftzpoaumkg";
+        final Logger logger = Logger.getAnonymousLogger();
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -86,7 +88,7 @@ public class EventService {
             Transport.send(message);
 
         } catch (MessagingException e) {
-        	e.printStackTrace();
+        	logger.log(Level.WARNING, "Email not sent@");
         }
 	}
 
