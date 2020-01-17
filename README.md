@@ -6,6 +6,8 @@
 * Speeds up the event booking process for the customer and business 
 * Full stack application with CRUD functionality 
 
+## **Contents**
+* 
 ## **How to Run**
 
 1. Run git clone on the repository
