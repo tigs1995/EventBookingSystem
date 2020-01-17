@@ -51,3 +51,11 @@ JUnit and integration testing with Mockito was used. Please see below for test c
 
 3. Create a log in page so the customers can view their invoices and upcoming events. 
 ![quote](https://i.ibb.co/q7V1wK1/Screenshot-2020-01-14-at-13-26-05.png)
+
+## **Acknowledgments**
+* @JHarry444
+* @nickrstewarttds
+* @nvalydon
+* @Harr1s96
+* @RebekahZoe
+* @jkiesslinger
