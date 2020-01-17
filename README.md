@@ -7,7 +7,14 @@
 * Full stack application with CRUD functionality 
 
 ## **Contents**
-* 
+* How to run
+* Technologies used
+* Architecture
+* Deployment
+* Testing
+* Future prospects
+* Acknowledgments
+
 ## **How to Run**
 
 1. Run git clone on the repository
