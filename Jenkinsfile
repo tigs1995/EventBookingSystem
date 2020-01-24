@@ -13,6 +13,8 @@ pipeline {
                 sh "docker rmi -f event-booking-system"
                 sh "docker system prune -f"
                 sh "rm -rf EventBookingSystem"
+            }
+        }
         stage('---Clean---') {
             steps {
                 sh "mvn clean"
