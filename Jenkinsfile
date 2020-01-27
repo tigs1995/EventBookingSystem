@@ -6,9 +6,6 @@ pipeline {
                 sh "docker stop event-booking-system"
                 sh "docker rm event-booking-system"
                 sh "docker rmi -f event-booking-system"
-                sh "cd .."
-                sh "rm -rf EventBookingSystem"
-                sh "cd EventBookingSystem"
             }
         }
         stage('--Build back-end--') {
