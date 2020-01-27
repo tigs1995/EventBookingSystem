@@ -1,13 +1,13 @@
 pipeline {
     agent any
     stages {
-        //stage('---Clear---') {
-            //steps {
-                //sh "docker stop event-booking-system"
-                //sh "docker rm event-booking-system"
-                //sh "docker rmi -f event-booking-system"
-            //}
-        //}
+        stage('---Clear---') {
+            steps {
+                sh "docker stop event-booking-system"
+                sh "docker rm event-booking-system"
+                sh "docker rmi -f event-booking-system"
+            }
+        }
         stage('--Build back-end--') {
             steps {
                 sh "docker build -t event-booking-system ."
