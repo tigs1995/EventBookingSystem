@@ -10,7 +10,7 @@ pipeline {
         //}
         stage('--Build back-end--') {
             steps {
-                sh "sudo chmod 777 /var/run/docker.sock"
+                sh "chmod 777 /var/run/docker.sock"
                 sh "docker build -t event-booking-system ."
                 }
         }
