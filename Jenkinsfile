@@ -15,7 +15,7 @@ pipeline {
         }
         stage('--Containerize back-end--') {
           steps {
-                sh "docker run --name event-booking-system -d -p 1900:8082 event-booking-system"
+                sh "docker run --name event-booking-system -d -p 1800:8082 event-booking-system"
                 }
           }
     }
