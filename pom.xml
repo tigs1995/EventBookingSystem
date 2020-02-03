@@ -5,7 +5,7 @@
 	<groupId>com.qa.eventBookingSystem</groupId>
 	<artifactId>eventBookingSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -25,9 +25,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.18</version>
 		</dependency>
 
 		<dependency>
@@ -61,17 +61,11 @@
 </dependencies>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
-		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
-					<configuration>
-						<executable>true</executable>
-					</configuration>
 				</plugin>
 			</plugins>
-		</pluginManagement>
 	</build> 
 </project>
