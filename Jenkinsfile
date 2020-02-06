@@ -8,14 +8,14 @@ pipeline {
             }
             stage('--Build back-end--') {
                 steps {
-                    sh "docker build -t event-booking-system ."
+                    sh "docker build -t ebs-backend-test ."
                     }
             }
         stage('--Deploy--') {
               steps {
                     sh "docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_PSSWRD}"
-                    sh "docker tag event-booking-system tigs1995/event-booking-system"
-                    sh "docker push tigs1995/event-booking-system"
+                    sh "docker tag ebs-backend-test tigs1995/ebs-backend-test"
+                    sh "docker push tigs1995/ebs-backend-test"
                     }
               }
     }
